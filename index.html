@@ -32,6 +32,24 @@
         .hero-gradient {
             background: linear-gradient(135deg, #5D4037 0%, #3E2723 50%, #1976D2 100%);
         }
+
+        /* AIチャット用スタイル */
+        #chat-window {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform: translateY(30px) scale(0.95);
+            opacity: 0;
+            pointer-events: none;
+        }
+        #chat-window.open {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .cursor-blink::after {
+            content: '|';
+            animation: blink 1s infinite;
+        }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
     </style>
 </head>
 <body class="bg-br-bg text-gray-700 font-sans antialiased">
@@ -207,6 +225,51 @@
         </div>
     </section>
 
+    <!-- Floating AI Chat Interface (Added back) -->
+    <div class="fixed bottom-8 right-8 z-[60]">
+        <button id="chat-toggle" class="bg-br-dark text-white w-20 h-20 rounded-[2rem] shadow-2xl flex flex-col items-center justify-center hover:bg-br-blue transition-all duration-500 group overflow-hidden border-4 border-white">
+            <span class="text-2xl group-hover:scale-125 transition">🐻</span>
+            <span class="text-[8px] font-black mt-1 tracking-widest">AI CORE</span>
+        </button>
+
+        <div id="chat-window" class="absolute bottom-24 right-0 w-[400px] bg-white rounded-[2.5rem] shadow-[0_40px_120px_rgba(0,0,0,0.3)] flex flex-col border border-gray-100 overflow-hidden text-gray-800">
+            <div class="bg-br-dark p-8 text-white relative overflow-hidden">
+                <div class="absolute top-0 right-0 opacity-10 translate-x-1/2 -translate-y-1/2">
+                    <svg width="200" height="200" viewBox="0 0 100 100" fill="white"><circle cx="50" cy="50" r="50"/></svg>
+                </div>
+                <div class="flex items-center gap-5 relative z-10">
+                    <div class="w-14 h-14 bg-br-blue rounded-2xl flex items-center justify-center text-2xl shadow-inner border border-white/10">🤖</div>
+                    <div>
+                        <h4 class="font-black text-xl tracking-tight italic">Mofu-Core <span class="text-br-gold font-bold">1.0</span></h4>
+                        <div class="flex items-center gap-2">
+                            <span id="core-status-light" class="w-2.5 h-2.5 bg-red-500 rounded-full"></span>
+                            <span id="core-status-text" class="text-[10px] font-black text-white/60 uppercase tracking-widest">Standalone Node</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="chat-messages" class="flex-1 p-6 overflow-y-auto space-y-6 bg-gray-50 h-[380px] scroll-smooth">
+                <div class="bg-white p-6 rounded-[2rem] rounded-tl-none shadow-sm text-sm border border-gray-100 mr-8 leading-relaxed">
+                    <p class="font-bold text-br-blue mb-2 italic">PROTOTYPE ENGINE READY</p>
+                    28階本社からサーバー全域を統括する独自開発AIです。<br>
+                    <button id="boot-engine" class="mt-6 w-full py-4 bg-br-dark text-white rounded-2xl font-black text-xs tracking-widest hover:bg-br-blue transition-all">
+                        ACTIVATE MOFU-CORE
+                    </button>
+                </div>
+            </div>
+
+            <div class="p-6 bg-white border-t border-gray-100">
+                <div class="flex gap-3">
+                    <input type="text" id="chat-input" placeholder="コアを有効にしてください..." class="flex-1 bg-gray-100 border-none rounded-2xl px-6 py-4 text-sm focus:ring-2 focus:ring-br-blue outline-none" disabled>
+                    <button id="chat-send" class="bg-br-dark text-white p-4 rounded-2xl hover:bg-br-blue transition-all disabled:opacity-20" disabled>
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <footer class="bg-gray-900 text-white py-12 border-t border-gray-800">
         <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
             <div class="flex items-center gap-3">
@@ -225,5 +288,122 @@
         </div>
     </footer>
 
+    <!-- Mofu-Core Engine Script -->
+    <script type="text/javascript">
+        class MofuEngine {
+            constructor() {
+                this.isReady = false;
+                this.knowledge = {
+                    "会社": "BR鉄道株式会社。本社はくまモフ公式ビルの28階。鉄道の未来をモフモフで変える企業クマ。",
+                    "場所": "公式ビル28階にあります。地上とは空気の質から違う、特別な管制センタークマ。",
+                    "未来": "全ての線路をモフモフの絨毯にする。それが我々のデスティニー（運命）クマ。",
+                    "挨拶": "こんにちはクマ！28階の独自開発AI、Mofu-Coreへようこそクマ。",
+                    "28階": "28階はBR鉄道の聖域。Mofu-Coreの演算もここで行われているクマ。",
+                    "採用": "初期クルーを募集中クマ。28階で待ってるクマ。モフモフな情熱があれば大歓迎クマ。",
+                    "理念": "平和的なインフラ開発を目指しているクマ。他社様とも仲良く共創したいクマ。"
+                };
+                this.fallbacks = [
+                    "28階の知能が解析中... モフモフな答えを探しているクマ。",
+                    "いい質問クマ。でも、28階からの絶景を見れば答えはわかるはずクマ。",
+                    "28階のサーバーが少し温かくなってきたクマ。モフモフの調整が必要かもクマ。"
+                ];
+            }
+
+            async boot(onProgress) {
+                for (let i = 0; i <= 100; i += 10) {
+                    await new Promise(r => setTimeout(r, 80));
+                    onProgress(i);
+                }
+                this.isReady = true;
+            }
+
+            generate(input) {
+                const text = input.toLowerCase();
+                const keys = Object.keys(this.knowledge);
+                const foundKey = keys.find(k => text.includes(k));
+                return foundKey ? this.knowledge[foundKey] : this.fallbacks[Math.floor(Math.random() * this.fallbacks.length)];
+            }
+        }
+
+        const mofu = new MofuEngine();
+        const chatToggle = document.getElementById('chat-toggle');
+        const chatWindow = document.getElementById('chat-window');
+        const chatMessages = document.getElementById('chat-messages');
+        const chatInput = document.getElementById('chat-input');
+        const chatSend = document.getElementById('chat-send');
+        const bootBtn = document.getElementById('boot-engine');
+        const statusLight = document.getElementById('core-status-light');
+        const statusText = document.getElementById('core-status-text');
+
+        chatToggle.addEventListener('click', () => chatWindow.classList.toggle('open'));
+
+        bootBtn.addEventListener('click', async () => {
+            bootBtn.disabled = true;
+            bootBtn.innerText = "コア起動中...";
+            await mofu.boot((p) => {
+                bootBtn.innerText = `SYNCING... ${p}%`;
+                if (p === 100) {
+                    setTimeout(() => {
+                        bootBtn.remove();
+                        statusLight.className = "w-2.5 h-2.5 bg-green-500 rounded-full shadow-[0_0_10px_#22c55e]";
+                        statusText.innerText = "ACTIVE PROPRIETARY CORE";
+                        chatInput.disabled = false;
+                        chatSend.disabled = false;
+                        chatInput.placeholder = "28階へ質問をどうぞ...";
+                        appendMessage("Mofu-Core 1.0 オンライン。28階の独自知能へようこそ。何をお手伝いしましょうかクマ？", "ai");
+                    }, 500);
+                }
+            });
+        });
+
+        async function handleSend() {
+            const val = chatInput.value.trim();
+            if (!val) return;
+
+            appendMessage(val, "user");
+            chatInput.value = "";
+            chatInput.disabled = true;
+
+            const thinkingDiv = document.createElement('div');
+            thinkingDiv.className = 'text-[10px] font-black text-br-blue ml-4 animate-pulse uppercase';
+            thinkingDiv.innerText = "Analyzing on 28F Server...";
+            chatMessages.appendChild(thinkingDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            await new Promise(r => setTimeout(r, 600));
+            thinkingDiv.remove();
+
+            const reply = mofu.generate(val);
+            const aiMsgDiv = document.createElement('div');
+            aiMsgDiv.className = 'bg-white p-6 rounded-[2rem] rounded-tl-none shadow-sm text-sm border border-gray-100 mr-8 leading-relaxed cursor-blink';
+            chatMessages.appendChild(aiMsgDiv);
+            
+            let i = 0;
+            const timer = setInterval(() => {
+                aiMsgDiv.innerText += reply[i];
+                i++;
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+                if (i >= reply.length) {
+                    clearInterval(timer);
+                    aiMsgDiv.classList.remove('cursor-blink');
+                    chatInput.disabled = false;
+                    chatInput.focus();
+                }
+            }, 30);
+        }
+
+        function appendMessage(text, role) {
+            const div = document.createElement('div');
+            div.className = role === 'user'
+                ? 'bg-br-dark text-white p-5 rounded-[2rem] rounded-tr-none shadow-lg text-sm ml-8 self-end'
+                : 'bg-white p-6 rounded-[2rem] rounded-tl-none shadow-sm text-sm border border-gray-100 mr-8';
+            div.innerText = text;
+            chatMessages.appendChild(div);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        chatSend.addEventListener('click', handleSend);
+        chatInput.addEventListener('keypress', (e) => e.key === 'Enter' && handleSend());
+    </script>
 </body>
 </html>
