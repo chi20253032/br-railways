@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BR鉄道 株式会社 | 世界一、モフモフな旅をあなたに。</title>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        br: {
+                            brown: '#5D4037', // クマのブラウン
+                            dark: '#3E2723',  // 濃いブラウン
+                            blue: '#1976D2',  // 鉄道のブルー
+                            gold: '#FFD700',  // 当選・公式のゴールド
+                            bg: '#FDFBF7',    // 優しいクリーム色の背景
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"M PLUS Rounded 1c"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        /* 背景グラデーション（画像なしでリッチに見せる） */
+        .hero-gradient {
+            background: linear-gradient(135deg, #5D4037 0%, #3E2723 50%, #1976D2 100%);
+        }
+    </style>
+</head>
+<body class="bg-br-bg text-gray-700 font-sans antialiased">
+
+    <nav class="bg-white/95 backdrop-blur-sm fixed w-full z-50 shadow-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center gap-3">
+                    <svg class="w-10 h-10" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="20" cy="25" r="15" fill="#5D4037"/>
+                        <circle cx="80" cy="25" r="15" fill="#5D4037"/>
+                        <circle cx="50" cy="55" r="45" fill="#5D4037"/>
+                        <path d="M5 55 H95" stroke="#1976D2" stroke-width="8" stroke-linecap="round"/>
+                        <text x="50" y="75" font-family="Arial, sans-serif" font-weight="bold" font-size="35" fill="white" text-anchor="middle">BR</text>
+                    </svg>
+                    <span class="font-extrabold text-2xl text-br-brown tracking-tight">BR鉄道</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#news" class="font-bold text-gray-600 hover:text-br-blue transition">ニュース</a>
+                    <a href="#about" class="font-bold text-gray-600 hover:text-br-blue transition">BRの理念</a>
+                    <a href="#vision" class="font-bold text-gray-600 hover:text-br-blue transition">未来ビジョン</a>
+                    <a href="#recruit" class="bg-br-brown text-white px-5 py-2 rounded-full font-bold hover:bg-br-blue transition shadow-md transform hover:-translate-y-0.5">
+                        クルー募集
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero-gradient h-screen flex items-center justify-center text-center px-4 relative overflow-hidden">
+        <svg class="absolute opacity-10 w-[800px] h-[800px] -right-20 -bottom-20 pointer-events-none" viewBox="0 0 100 100" fill="#ffffff">
+            <circle cx="50" cy="50" r="50" />
+        </svg>
+
+        <div class="max-w-4xl mx-auto text-white relative z-10">
+            <div class="inline-flex items-center bg-white/10 backdrop-blur-md border border-white/20 px-4 py-1.5 rounded-full text-sm font-bold mb-8 tracking-wide shadow-lg">
+                <span class="w-2 h-2 bg-br-gold rounded-full mr-2 animate-pulse"></span>
+                くまモフ公式高層ビル 28階 入居決定
+            </div>
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight drop-shadow-xl">
+                世界一、<br class="md:hidden">モフモフな旅を<br>あなたに。
+            </h1>
+            <p class="text-xl md:text-2xl mb-12 font-medium text-gray-100 drop-shadow-md opacity-90">
+                28階から、サーバーの未来を繋ぐ。<br>
+                安心と信頼のインフラ、いよいよ始動。
+            </p>
+            <div class="flex flex-col md:flex-row justify-center gap-5">
+                <a href="#recruit" class="bg-white text-br-brown px-8 py-4 rounded-full font-bold text-lg hover:bg-br-gold hover:text-br-brown transition shadow-xl transform hover:scale-105">
+                    クルー(社員)に応募する
+                </a>
+                <a href="#vision" class="bg-transparent border-2 border-white/50 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/10 transition">
+                    ビジョンを見る
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <section id="news" class="py-24 -mt-10 relative z-20">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="bg-white rounded-3xl shadow-2xl p-8 md:p-12 border border-gray-100 flex flex-col md:flex-row items-center gap-10">
+                <div class="md:w-1/3 flex flex-col items-center text-center">
+                    <div class="w-24 h-24 bg-br-gold/20 rounded-full flex items-center justify-center mb-4">
+                        <span class="text-5xl">🏢</span>
+                    </div>
+                    <h2 class="text-2xl font-bold text-br-brown">公式拠点決定</h2>
+                    <p class="text-sm text-gray-500 font-bold mt-1">THE OFFICIAL 28TH FLOOR</p>
+                </div>
+                <div class="md:w-2/3 border-l-0 md:border-l-4 border-br-gold md:pl-10">
+                    <h3 class="text-3xl font-bold text-gray-800 mb-4">選ばれし「28階」へ。</h3>
+                    <p class="text-lg leading-relaxed text-gray-600 mb-6">
+                        114件の応募から選ばれた23社の一つとして、BR鉄道は「くまモフ公式高層ビル28階」に本社を構えます。<br>
+                        3階エントランスから直結する地下鉄、そして辺亜電鉄様(33階)との連携など、ここを起点にサーバー全域へのアクセス網を構築します。
+                    </p>
+                    <div class="inline-block bg-br-blue/10 text-br-blue px-4 py-2 rounded-lg font-bold text-sm">
+                        INFO: CR様・他社様との連携協議スペースも完備
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-20 bg-br-bg">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="text-br-blue font-bold tracking-widest uppercase">About Us</span>
+                <h2 class="text-4xl font-extrabold text-br-brown mt-2">愛される「ベアブランド」</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-br-brown">
+                    <div class="text-4xl mb-6">🐻</div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">親しみやすさと信頼</h3>
+                    <p class="text-gray-600">「くまモフ」の温かいイメージを鉄道に。移動そのものが癒やしになる、そんな体験を提供します。</p>
+                </div>
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-br-blue">
+                    <div class="text-4xl mb-6">🛡️</div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">公式ビルの安心感</h3>
+                    <p class="text-gray-600">公式ビル28階に拠点を置く責任ある企業として、安全で確実なインフラ整備をお約束します。</p>
+                </div>
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-br-gold">
+                    <div class="text-4xl mb-6">🤝</div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">競争から「共創」へ</h3>
+                    <p class="text-gray-600">他社を圧倒するのではなく、共にサーバーを盛り上げるパートナーとして。平和的なインフラ開発を目指します。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="vision" class="py-24 bg-gray-900 text-white relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-br-blue/20 rounded-full blur-3xl -mr-20 -mt-20"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-br-brown/20 rounded-full blur-3xl -ml-20 -mb-20"></div>
+
+        <div class="max-w-5xl mx-auto px-4 text-center relative z-10">
+            <h2 class="text-3xl md:text-5xl font-bold mb-8">未来への約束：相互直通運転</h2>
+            <p class="text-xl leading-loose mb-12 text-gray-300">
+                BR鉄道は、CR鉄道様（たこやん代表）をはじめとする他社路線との<br>
+                <strong>「相互直通運転」</strong>や将来的な<strong>「事業連携」</strong>を視野に入れています。<br>
+                公式ビル3階のエントランスは、すべての鉄道が繋がる未来のハブステーションです。
+            </p>
+            <div class="inline-block border border-gray-700 bg-gray-800/50 px-8 py-4 rounded-xl backdrop-blur-sm">
+                <span class="block text-sm text-gray-400 mb-1">HEADQUARTERS</span>
+                <span class="font-bold text-lg">28階 本社機能：将来の合併協議や技術提携のためのオープンスペース完備</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="recruit" class="py-24 bg-white">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="bg-gradient-to-br from-br-bg to-white rounded-[3rem] shadow-2xl overflow-hidden border border-br-brown/10">
+                <div class="p-10 md:p-16 text-center">
+                    <h2 class="text-3xl md:text-5xl font-extrabold text-br-brown mb-6">BR初期クルー募集</h2>
+                    <p class="text-lg text-gray-600 mb-12 max-w-2xl mx-auto">
+                        明日からの着工に向け、共に歴史を創る仲間を募集します。<br>
+                        公式ビル28階を拠点に、サーバー最高の鉄道網を作りませんか？
+                    </p>
+                    
+                    <div class="grid md:grid-cols-2 gap-8 text-left mb-12">
+                        <div class="flex gap-4">
+                            <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600 shrink-0">✔</div>
+                            <div>
+                                <strong class="block text-gray-800 text-lg mb-1">資材供給システム</strong>
+                                <span class="text-sm text-gray-500">本社ビル直結の供給網を構築予定。建築・整地に集中できる環境です。</span>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600 shrink-0">✔</div>
+                            <div>
+                                <strong class="block text-gray-800 text-lg mb-1">業界最高水準の待遇</strong>
+                                <span class="text-sm text-gray-500">公式ビル当選企業だからこその安定感。社員の活動を全力でバックアップします。</span>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600 shrink-0">✔</div>
+                            <div>
+                                <strong class="block text-gray-800 text-lg mb-1">公式ビル直結の現場</strong>
+                                <span class="text-sm text-gray-500">サーバーの中心地である公式ビル周辺が主な活動エリアです。</span>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600 shrink-0">✔</div>
+                            <div>
+                                <strong class="block text-gray-800 text-lg mb-1">移籍・兼業も歓迎</strong>
+                                <span class="text-sm text-gray-500">CR様や他社様からの移籍、掛け持ちも柔軟に対応します。</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="#" class="block w-full md:w-auto md:inline-block bg-br-brown text-white font-bold text-xl px-16 py-5 rounded-full shadow-xl hover:bg-br-dark transition transform hover:-translate-y-1">
+                        公式Discordで応募する
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-3">
+                 <svg class="w-8 h-8 opacity-70" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="20" cy="25" r="15" fill="#fff"/>
+                    <circle cx="80" cy="25" r="15" fill="#fff"/>
+                    <circle cx="50" cy="55" r="45" fill="#fff"/>
+                    <path d="M5 55 H95" stroke="#333" stroke-width="8" stroke-linecap="round"/>
+                </svg>
+                <span class="font-bold text-lg text-gray-300">BR鉄道 株式会社</span>
+            </div>
+            <div class="text-gray-500 text-sm text-center md:text-right">
+                <p class="mb-1">本社：くまモフ公式高層ビル 28階</p>
+                <p>&copy; 2026 BR Railways. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
