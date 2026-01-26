@@ -1,0 +1,15 @@
+{
+  "short_name": "BR Railway",
+  "name": "BR Railway",
+  "display": "standalone",
+  "start_url": "/",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "BR.png",
+      "sizes": "1408x768",
+      "type": "image/png"
+    }
+  ]
+}
