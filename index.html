@@ -174,6 +174,17 @@
 
     const setMessage = (text, type = "") => { message.textContent = text; message.className = `auth-message ${type}`; };
     const setAccountMessage = (text, type = "") => { accountMessage.textContent = text; accountMessage.className = `auth-message ${type}`; };
+    const firestoreErrorHelp = error => {
+      const code = typeof error?.code === "string" ? error.code : "unknown";
+      const help = {
+        "permission-denied": "Firestoreルールで拒否されました。Firebase Consoleで mofu-br のルールを確認し、firestore.rules をデプロイしてください。",
+        "failed-precondition": "Firestoreデータベースが未作成、または利用準備中です。Firebase Consoleで Cloud Firestore のデータベースを作成してください。",
+        "not-found": "Firestoreデータベースが見つかりません。Firebase Consoleで mofu-br にデータベースがあるか確認してください。",
+        "unauthenticated": "ログイン状態を確認できませんでした。いったんログアウトして再ログインしてください。",
+        "unavailable": "Firestoreに接続できません。通信状態を確認して再試行してください。"
+      };
+      return help[code] || `Firestoreエラー (${code})。Firebase ConsoleのFirestore設定とルールを確認してください。`;
+    };
     const renderSavedInterests = () => {
       document.querySelectorAll("[data-interest]").forEach(button => {
         const saved = savedInterests.has(button.dataset.interest);
@@ -223,7 +234,8 @@
         if (Array.isArray(values)) values.filter(id => Object.hasOwn(interestNames, id)).forEach(id => savedInterests.add(id));
         renderSavedInterests();
       } catch (error) {
-        setAccountMessage("設定を読み込めません。Firestoreの有効化とセキュリティルールを確認してください。", "error");
+        console.error("Firestore profile read failed:", error?.code || error);
+        setAccountMessage(`設定を読み込めませんでした。${firestoreErrorHelp(error)}`, "error");
       }
     };
     const toggleInterest = async id => {
@@ -247,7 +259,8 @@
       } catch (error) {
         if (wasSaved) savedInterests.add(id); else savedInterests.delete(id);
         renderSavedInterests();
-        setAccountMessage("保存できませんでした。Firestoreの有効化とセキュリティルールを確認してください。", "error");
+        console.error("Firestore profile save failed:", error?.code || error);
+        setAccountMessage(`保存できませんでした。${firestoreErrorHelp(error)}`, "error");
       }
     };
     const setMode = (next) => {
