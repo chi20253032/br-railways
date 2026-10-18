@@ -32,11 +32,22 @@
     .motion-ready .reveal{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s cubic-bezier(.2,.7,.25,1)}
     .motion-ready .reveal.is-visible{opacity:1;transform:translateY(0)}
     .motion-ready .reveal[data-delay="1"]{transition-delay:.1s}.motion-ready .reveal[data-delay="2"]{transition-delay:.2s}.motion-ready .reveal[data-delay="3"]{transition-delay:.3s}
-    .station-saves{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:22px;max-width:720px;position:relative;z-index:1}
-    .station-save{display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid #ffffff35;background:#ffffff0d;color:white;padding:12px 14px;border-radius:15px;text-align:left;cursor:pointer;transition:background .2s,transform .2s}
-    .station-save:hover{background:#ffffff18;transform:translateY(-2px)}.station-save[aria-pressed="true"]{background:#e9b957;color:#173642;border-color:#e9b957}
-    .station-save strong{display:block;font-size:12px}.station-save small{display:block;margin-top:2px;color:inherit;opacity:.72;font-size:9px}
-    .save-mark{font-size:18px;font-weight:800}
+    .status-pill{display:inline-flex;align-items:center;gap:9px;border:1px solid #dcae9d;background:#fff2eb;color:#98452f;padding:8px 12px;border-radius:999px;font-size:11px;font-weight:800}
+    .status-pill span{width:8px;height:8px;border-radius:50%;background:#c6533c;box-shadow:0 0 0 4px #c6533c1c}
+    .world-status-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:28px 0 15px;position:relative;z-index:1}
+    .world-status{min-height:115px;display:grid;grid-template-columns:auto 1fr;align-content:start;gap:10px 12px;background:#ffffff0d;border:1px solid #ffffff24;border-radius:17px;padding:15px}
+    .world-icon{font-size:20px;grid-row:span 2}
+    .world-status strong{font-size:12px;display:block;color:white}
+    .world-status small{display:block;font-size:10px;line-height:1.5;color:#d1e0e1;margin-top:4px}
+    .status-tag{grid-column:2;justify-self:start;border-radius:999px;padding:4px 8px;background:#f7d9cf;color:#8f3e2b;font-size:9px;font-weight:800;letter-spacing:.04em}
+    .status-tag-muted{background:#ffffff17;color:#d1e0e1}
+    .route-note{font-size:10px!important;color:#b8cbcd!important;margin:17px 0 0!important;position:relative;z-index:1}
+    .interest-box{border-top:1px solid var(--line);padding-top:18px;margin-top:18px}
+    .interest-box>strong{font-size:12px}.interest-box>p{font-size:10px;color:var(--muted);margin:4px 0 12px}
+    .interest-saves{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+    .interest-save{display:flex;align-items:center;justify-content:space-between;gap:7px;background:#f7f8f5;border:1px solid var(--line);border-radius:12px;padding:10px;font-size:10px;font-weight:800;text-align:left;cursor:pointer;transition:background .2s,transform .2s}
+    .interest-save:hover{transform:translateY(-2px);background:#eef5f5}.interest-save[aria-pressed="true"]{background:var(--blue2);border-color:#9ec8cd;color:var(--blue)}
+    .save-mark{font-size:16px;font-weight:800}
     .account-section{background:#f7f8f5;border:1px solid var(--line);border-radius:18px;padding:17px;margin:18px 0}
     .account-section h3{font-size:13px;margin:0 0 5px}.account-section p{font-size:10px;color:var(--muted);margin:0 0 12px}
     .saved-list{display:grid;gap:8px;margin:0;padding:0;list-style:none}
@@ -52,7 +63,7 @@
     @keyframes sun-breathe{0%,100%{transform:scale(1);box-shadow:0 0 0 18px #fff3}50%{transform:scale(1.06);box-shadow:0 0 0 24px #fff2}}
     @keyframes train-glide{0%,100%{translate:0 0}50%{translate:9px -3px}}
     @keyframes hills-drift{from{translate:-4px 0}to{translate:5px 0}}
-    @media(max-width:680px){.station-saves{grid-template-columns:1fr}.station-save{padding:10px 13px}.motion-ready .reveal{transform:translateY(14px)}}
+    @media(max-width:680px){.world-status-grid{grid-template-columns:1fr}.world-status{min-height:0}.interest-saves{grid-template-columns:1fr}.motion-ready .reveal{transform:translateY(14px)}}
     @media(prefers-reduced-motion:reduce){.hero-content,.hero-art,.sun,.train,.hills{animation:none!important}.motion-ready .reveal{opacity:1!important;transform:none!important}.feature,.news-card,.route-panel,.crew-card,.stat{transition:none!important}}
   </style>
 </head>
@@ -73,29 +84,30 @@
         <div class="hero-content">
           <span class="eyebrow">BEAR RAILWAYS · KUMAMOFU SERVER</span>
           <h1>世界一、<br><em>モフモフな旅</em>を<br>あなたに。</h1>
-          <p class="hero-copy">くまモフサーバーの景色と人を、線路でつなぐ。BR鉄道は、安心であたたかな移動体験をみんなと一緒につくる鉄道会社です。</p>
-          <div class="hero-buttons"><a class="btn btn-primary" href="#route">路線計画を見る <span aria-hidden="true">→</span></a><a class="btn btn-quiet" href="#crew">クルーに参加する</a></div>
+          <div class="status-pill"><span aria-hidden="true"></span>現在、BRの活動はすべて停止中</div>
+          <p class="hero-copy">路線計画は決定済みですが、鉄道建設用ワールドのデータ削除により、現在は活動を停止しています。再開時期は未定です。</p>
+          <div class="hero-buttons"><a class="btn btn-primary" href="#route">路線計画を見る <span aria-hidden="true">→</span></a><a class="btn btn-quiet" href="#crew">クルー募集状況を見る</a></div>
           <p class="hero-note">※ BR鉄道はゲームサーバー内での鉄道プロジェクトです。</p>
         </div>
-        <div class="hero-art" role="img" aria-label="緑の丘を走る、くまのマークが付いた青と白の列車">
-          <span class="art-label">A JOURNEY WITH A LITTLE WARMTH</span><span class="sun"></span><span class="hills"></span><span class="track"></span><span class="train"></span><span class="wheel"></span><span class="art-caption">KUMAMOFU LINE · PLANNING</span>
+        <div class="hero-art" role="img" aria-label="BR鉄道のイメージイラスト。現在運行中の列車ではありません">
+          <span class="art-label">A JOURNEY WITH A LITTLE WARMTH</span><span class="sun"></span><span class="hills"></span><span class="track"></span><span class="train"></span><span class="wheel"></span><span class="art-caption">ROUTE PLAN · PROJECT PAUSED</span>
         </div>
       </div>
     </section>
     <div class="stats wrap" aria-label="BR鉄道の概要">
       <div class="stat"><strong>28F</strong><span>公式ビル 本社フロア</span></div>
-      <div class="stat"><strong>つながる</strong><span>地域と人を結ぶ鉄道づくり</span></div>
-      <div class="stat"><strong>CREW WANTED</strong><span>初期クルー募集中</span></div>
+      <div class="stat"><strong>停止中</strong><span>鉄道ワールドのデータ削除に伴い活動休止</span></div>
+      <div class="stat"><strong>募集停止中</strong><span>活動再開までクルー募集も休止</span></div>
     </div>
     <section class="section" id="news">
       <div class="wrap">
         <div class="section-heading"><div><span class="eyebrow">LATEST NEWS</span><h2>BR鉄道からのお知らせ</h2></div><p>プロジェクトの最新情報は、公式Discordでもご案内しています。</p></div>
-        <article class="news-card"><div><span class="news-label">HEADQUARTERS</span><h3>公式高層ビル28階に本社を開設</h3><p>114件の応募から選ばれた23社の一つとして、BR鉄道の拠点が決まりました。ここからサーバーの地域をつなぐ鉄道網の計画を進めます。</p></div><span class="news-date">BR RAILWAYS</span></article>
+        <article class="news-card"><div><span class="news-label">CURRENT STATUS · 活動停止中</span><h3>鉄道ワールドのデータ削除に伴い、BRの活動を停止しています</h3><p>路線計画は一度決定しましたが、鉄道建設用のマインクラフトワールドのデータがサーバー代表によって削除されました。現在、BRの活動はすべて停止しており、再開時期は未定です。本社のあるワールドと鉄道ワールドは別です。</p></div><span class="news-date">現在</span></article>
       </div>
     </section>
     <section class="section" id="about" style="background:#eeece5">
       <div class="wrap">
-        <div class="section-heading"><div><span class="eyebrow">ABOUT BR</span><h2>移動の時間まで、<br>好きになる鉄道へ。</h2></div><p>速さだけではなく、乗る人の安心や、地域の人とのつながりを大切にします。</p></div>
+        <div class="section-heading"><div><span class="eyebrow">ABOUT BR</span><h2>移動の時間まで、<br>好きになる鉄道へ。</h2></div><p>活動再開を目指し、乗る人の安心や地域の人とのつながりを大切にした鉄道を計画しています。現在はプロジェクトを停止しています。</p></div>
         <div class="feature-grid">
           <article class="feature"><div class="feature-icon">🐻</div><h3>ほっとする乗車体験</h3><p>くまモフらしい親しみやすさと、わかりやすい案内で、初めての方にもやさしい鉄道を目指します。</p></article>
           <article class="feature"><div class="feature-icon">🛡️</div><h3>安全を一番に</h3><p>計画から建設、運行まで、みんなが安心して利用できるインフラを丁寧につくります。</p></article>
@@ -104,12 +116,12 @@
       </div>
     </section>
     <section class="section" id="route">
-      <div class="wrap"><div class="route-panel reveal"><span class="eyebrow">NETWORK VISION</span><h2>街から街へ、つながる未来。</h2><p>公式ビルのエントランスを起点に、地域をつなぐ路線を計画中です。駅や運行の詳細は、決まり次第こちらでお知らせします。</p><div class="route-line" aria-label="本社前から街の中心を通り、地域へ向かう計画路線"><span class="station"><i class="dot"></i>本社前</span><i class="rail"></i><span class="station"><i class="dot"></i>街の中心</span><i class="rail"></i><span class="station"><i class="dot"></i>各地域</span></div><span class="planning-tag">ROUTE CONCEPT · 計画イメージ</span><div class="station-saves" aria-label="気になる駅を保存"><button class="station-save" type="button" data-favorite-station="headquarters" aria-pressed="false"><span><strong>本社前</strong><small>HEADQUARTERS</small></span><span class="save-mark" aria-hidden="true">＋</span></button><button class="station-save" type="button" data-favorite-station="city-center" aria-pressed="false"><span><strong>街の中心</strong><small>CITY CENTER</small></span><span class="save-mark" aria-hidden="true">＋</span></button><button class="station-save" type="button" data-favorite-station="regional" aria-pressed="false"><span><strong>各地域</strong><small>REGIONAL</small></span><span class="save-mark" aria-hidden="true">＋</span></button></div></div></div>
+      <div class="wrap"><div class="route-panel reveal"><span class="eyebrow">ROUTE PLAN · 決定済み</span><h2>路線計画は決定済み。現在は再開待ちです。</h2><p>計画は一度決まりましたが、鉄道を建設するマインクラフトワールドのデータがサーバー代表によって削除されたため、BRの活動はすべて停止しています。現時点で再開時期は決まっていません。</p><div class="world-status-grid"><article class="world-status"><span class="world-icon" aria-hidden="true">🗺️</span><div><strong>鉄道建設ワールド</strong><small>本社とは別のワールド · データ削除 · 活動停止中</small></div><span class="status-tag">STOPPED</span></article><article class="world-status"><span class="world-icon" aria-hidden="true">🏢</span><div><strong>本社ワールド</strong><small>公式高層ビル28階 · 鉄道ワールドとは別</small></div><span class="status-tag status-tag-muted">本社拠点</span></article><article class="world-status"><span class="world-icon" aria-hidden="true">🚆</span><div><strong>路線計画</strong><small>計画決定済み · 運行・建設は停止中</small></div><span class="status-tag status-tag-muted">再開時期未定</span></article></div><p class="route-note">※ 本社と鉄道の建設場所は別々のマインクラフトワールドです。本社から鉄道へ直接つながる路線があるという意味ではありません。</p></div></div>
     </section>
     <section class="section" id="crew" style="background:#eeece5">
       <div class="wrap crew">
-        <div class="crew-copy"><span class="eyebrow">JOIN OUR CREW</span><h2>いっしょに、<br>線路をつくろう。</h2><p>BR鉄道では、初期クルーを募集中です。建築やアイデア出しなど、あなたの得意なことから参加できます。</p><a class="btn btn-primary" href="https://discord.gg/AhrmWwSEN9" target="_blank" rel="noopener noreferrer">公式Discordで応募する <span aria-hidden="true">↗</span></a></div>
-        <div class="crew-card"><ul class="crew-list"><li><span class="check">✓</span><span><strong>建築・駅づくり</strong><br>駅舎や街並みのデザイン、建設に参加。</span></li><li><span class="check">✓</span><span><strong>路線・運行の企画</strong><br>ルートや利用しやすい運行のアイデアを提案。</span></li><li><span class="check">✓</span><span><strong>広報・コミュニティ</strong><br>プロジェクトの魅力をみんなに発信。</span></li><li><span class="check">✓</span><span><strong>兼業も相談できます</strong><br>他社で活動中の方も、まずは気軽にご相談ください。</span></li></ul><span class="planning-tag" style="color:var(--blue);border-color:var(--line)">経験不問 · 参加方法はDiscordでご案内</span></div>
+        <div class="crew-copy"><span class="eyebrow">CREW · 現在募集停止中</span><h2>再開の日に向けて、<br>想いをつなぐ。</h2><p>現在、BRの活動とクルー募集は停止しています。再開時期は未定です。再開後に興味のある活動分野は、アカウントに保存できます。</p><a class="btn btn-primary" href="https://discord.gg/AhrmWwSEN9" target="_blank" rel="noopener noreferrer">公式Discordで最新状況を確認 <span aria-hidden="true">↗</span></a></div>
+        <div class="crew-card"><ul class="crew-list"><li><span class="check">✓</span><span><strong>駅・建築</strong><br>再開後に予定する活動分野です。現在は作業を停止しています。</span></li><li><span class="check">✓</span><span><strong>路線・運行企画</strong><br>決定済みの路線計画をもとにした活動分野です。</span></li><li><span class="check">✓</span><span><strong>広報・コミュニティ</strong><br>再開後の情報発信などを想定した活動分野です。</span></li></ul><div class="interest-box"><strong>再開後に興味のある活動</strong><p>選択した分野をアカウントに保存できます。</p><div class="interest-saves" aria-label="興味のある活動分野"><button class="interest-save" type="button" data-interest="building" aria-pressed="false">駅・建築 <span class="save-mark" aria-hidden="true">＋</span></button><button class="interest-save" type="button" data-interest="planning" aria-pressed="false">路線・運行 <span class="save-mark" aria-hidden="true">＋</span></button><button class="interest-save" type="button" data-interest="community" aria-pressed="false">広報・交流 <span class="save-mark" aria-hidden="true">＋</span></button></div></div></div>
       </div>
     </section>
   </main>
@@ -133,7 +145,7 @@
         <p class="auth-message" id="auth-message" role="status" aria-live="polite"></p>
       </div>
       <div class="account-view" id="account-view">
-        <span class="eyebrow">YOUR ACCOUNT</span><div class="account-avatar" aria-hidden="true">🐻</div><h2 id="account-name">ようこそ</h2><p class="account-email" id="account-email"></p><span class="account-badge" id="verified-badge">確認済み</span><p class="modal-intro">アカウントでログインしています。クルーへの応募は公式Discordから受け付けています。</p><div class="account-section"><h3>気になる駅リスト</h3><p>保存した駅は、次回ログイン時もこのアカウントで見られます。</p><ul class="saved-list" id="account-favorites"><li class="saved-empty">駅を読み込み中…</li></ul></div><button class="btn btn-quiet" id="sign-out" style="width:100%">ログアウト</button><p class="auth-message" id="account-message" role="status" aria-live="polite"></p>
+        <span class="eyebrow">YOUR ACCOUNT</span><div class="account-avatar" aria-hidden="true">🐻</div><h2 id="account-name">ようこそ</h2><p class="account-email" id="account-email"></p><span class="account-badge" id="verified-badge">確認済み</span><p class="modal-intro">アカウントでログインしています。現在、BRの活動とクルー募集は停止中です。</p><div class="account-section"><h3>再開後に興味のある活動</h3><p>選択した分野はアカウントに保存され、次回ログイン後も確認できます。</p><ul class="saved-list" id="account-favorites"><li class="saved-empty">興味のある分野を読み込み中…</li></ul></div><button class="btn btn-quiet" id="sign-out" style="width:100%">ログアウト</button><p class="auth-message" id="account-message" role="status" aria-live="polite"></p>
       </div>
     </section>
   </div>
@@ -152,40 +164,39 @@
     let firebaseApp = null;
     let firestoreApi = null;
     let currentUser = null;
-    const stationNames = {
-      headquarters: "本社前",
-      "city-center": "街の中心",
-      regional: "各地域"
+    const interestNames = {
+      building: "駅・建築",
+      planning: "路線・運行",
+      community: "広報・交流"
     };
-    const savedStations = new Set();
+    const savedInterests = new Set();
     const accountMessage = document.querySelector("#account-message");
 
     const setMessage = (text, type = "") => { message.textContent = text; message.className = `auth-message ${type}`; };
     const setAccountMessage = (text, type = "") => { accountMessage.textContent = text; accountMessage.className = `auth-message ${type}`; };
-    const renderSavedStations = () => {
-      document.querySelectorAll("[data-favorite-station]").forEach(button => {
-        const saved = savedStations.has(button.dataset.favoriteStation);
+    const renderSavedInterests = () => {
+      document.querySelectorAll("[data-interest]").forEach(button => {
+        const saved = savedInterests.has(button.dataset.interest);
         button.setAttribute("aria-pressed", String(saved));
         button.querySelector(".save-mark").textContent = saved ? "✓" : "＋";
-        button.querySelector("small").textContent = saved ? "保存済み" : button.dataset.favoriteStation.toUpperCase().replaceAll("-", " ");
       });
       const list = document.querySelector("#account-favorites");
       list.replaceChildren();
-      if (!savedStations.size) {
+      if (!savedInterests.size) {
         const empty = document.createElement("li");
         empty.className = "saved-empty";
-        empty.textContent = "まだ保存した駅はありません。路線計画から追加できます。";
+        empty.textContent = "まだ選択されていません。クルー募集欄から選べます。";
         list.append(empty);
         return;
       }
-      for (const id of savedStations) {
+      for (const id of savedInterests) {
         const item = document.createElement("li");
         const name = document.createElement("span");
         const remove = document.createElement("button");
-        name.textContent = stationNames[id];
+        name.textContent = interestNames[id];
         remove.type = "button";
-        remove.textContent = "リストから削除";
-        remove.addEventListener("click", () => toggleStation(id));
+        remove.textContent = "選択解除";
+        remove.addEventListener("click", () => toggleInterest(id));
         item.append(name, remove);
         list.append(item);
       }
@@ -197,45 +208,45 @@
       firestoreApi = {...sdk, db: sdk.getFirestore(firebaseApp)};
       return firestoreApi;
     };
-    const loadFavorites = async user => {
-      savedStations.clear();
+    const loadInterests = async user => {
+      savedInterests.clear();
       if (!user) {
-        renderSavedStations();
+        renderSavedInterests();
         setAccountMessage("");
         return;
       }
-      renderSavedStations();
+      renderSavedInterests();
       try {
         const db = await getFirestoreApi();
         const snapshot = await db.getDoc(db.doc(db.db, "users", user.uid));
-        const values = snapshot.exists() ? snapshot.data().savedStations : [];
-        if (Array.isArray(values)) values.filter(id => Object.hasOwn(stationNames, id)).forEach(id => savedStations.add(id));
-        renderSavedStations();
+        const values = snapshot.exists() ? snapshot.data().interests : [];
+        if (Array.isArray(values)) values.filter(id => Object.hasOwn(interestNames, id)).forEach(id => savedInterests.add(id));
+        renderSavedInterests();
       } catch (error) {
-        setAccountMessage("駅リストを読み込めません。Firestoreの有効化とセキュリティルールを確認してください。", "error");
+        setAccountMessage("設定を読み込めません。Firestoreの有効化とセキュリティルールを確認してください。", "error");
       }
     };
-    const toggleStation = async id => {
-      if (!Object.hasOwn(stationNames, id)) return;
+    const toggleInterest = async id => {
+      if (!Object.hasOwn(interestNames, id)) return;
       if (!currentUser) {
         await openModal();
-        setMessage("駅をアカウントに保存するには、ログインしてください。");
+        setMessage("分野をアカウントに保存するには、ログインしてください。");
         return;
       }
-      const wasSaved = savedStations.has(id);
-      if (wasSaved) savedStations.delete(id); else savedStations.add(id);
-      renderSavedStations();
+      const wasSaved = savedInterests.has(id);
+      if (wasSaved) savedInterests.delete(id); else savedInterests.add(id);
+      renderSavedInterests();
       setAccountMessage("保存しています…");
       try {
         const db = await getFirestoreApi();
         await db.setDoc(db.doc(db.db, "users", currentUser.uid), {
-          savedStations: [...savedStations],
+          interests: [...savedInterests],
           updatedAt: db.serverTimestamp()
         });
-        setAccountMessage(wasSaved ? "駅をリストから削除しました。" : "駅をアカウントに保存しました。", "success");
+        setAccountMessage(wasSaved ? "興味分野の選択を解除しました。" : "興味分野をアカウントに保存しました。", "success");
       } catch (error) {
-        if (wasSaved) savedStations.add(id); else savedStations.delete(id);
-        renderSavedStations();
+        if (wasSaved) savedInterests.add(id); else savedInterests.delete(id);
+        renderSavedInterests();
         setAccountMessage("保存できませんでした。Firestoreの有効化とセキュリティルールを確認してください。", "error");
       }
     };
@@ -293,7 +304,7 @@
       auth.languageCode = "ja";
       firebaseApp = app;
       authApi = {...authSdk, auth};
-      authSdk.onAuthStateChanged(auth, user => { showAccount(user); loadFavorites(user); });
+      authSdk.onAuthStateChanged(auth, user => { showAccount(user); loadInterests(user); });
       return authApi;
     };
     const openModal = async () => {
@@ -305,7 +316,7 @@
     };
     const closeModal = () => { modal.classList.remove("open"); modal.setAttribute("aria-hidden","true"); document.body.style.overflow=""; };
     document.querySelectorAll("[data-open-account]").forEach(button => button.addEventListener("click", openModal));
-    document.querySelectorAll("[data-favorite-station]").forEach(button => button.addEventListener("click", () => toggleStation(button.dataset.favoriteStation)));
+    document.querySelectorAll("[data-interest]").forEach(button => button.addEventListener("click", () => toggleInterest(button.dataset.interest)));
     document.querySelector("#modal-close").addEventListener("click", closeModal);
     modal.addEventListener("click", event => { if (event.target === modal) closeModal(); });
     document.addEventListener("keydown", event => { if (event.key === "Escape" && modal.classList.contains("open")) closeModal(); });
@@ -325,7 +336,7 @@
         } else {
           const credential = await api.signInWithPopup(api.auth, provider);
           showAccount(credential.user);
-          await loadFavorites(credential.user);
+          await loadInterests(credential.user);
         }
       } catch (error) {
         const text = error?.code === "auth/operation-not-allowed"
@@ -382,12 +393,12 @@
     });
     document.querySelectorAll("#mobile-menu a").forEach(link => link.addEventListener("click", () => { document.querySelector("#mobile-menu").classList.remove("open"); menuToggle.setAttribute("aria-expanded","false"); menuToggle.textContent="☰"; }));
     setMode("login");
-    renderSavedStations();
+    renderSavedInterests();
     try {
       const api = await getAuthApi();
       await api.getRedirectResult(api.auth);
     } catch { /* Account setup instructions are shown when the user opens the account dialog. */ }
-    const revealTargets = document.querySelectorAll(".section-heading,.news-card,.feature,.stat,.crew-copy,.crew-card");
+    const revealTargets = document.querySelectorAll(".section-heading,.news-card,.feature,.stat,.route-panel,.crew-copy,.crew-card");
     revealTargets.forEach((element, index) => {
       element.classList.add("reveal");
       element.dataset.delay = String(index % 4);

@@ -6,15 +6,15 @@ service cloud.firestore {
     }
 
     function isValidProfile() {
-      let stations = request.resource.data.savedStations;
-      return request.resource.data.keys().hasOnly(['savedStations', 'updatedAt'])
-        && request.resource.data.keys().hasAll(['savedStations', 'updatedAt'])
-        && stations is list
-        && stations.size() <= 3
+      let interests = request.resource.data.interests;
+      return request.resource.data.keys().hasOnly(['interests', 'updatedAt'])
+        && request.resource.data.keys().hasAll(['interests', 'updatedAt'])
+        && interests is list
+        && interests.size() <= 3
         && request.resource.data.updatedAt == request.time
-        && (stations.size() < 1 || stations[0] in ['headquarters', 'city-center', 'regional'])
-        && (stations.size() < 2 || stations[1] in ['headquarters', 'city-center', 'regional'])
-        && (stations.size() < 3 || stations[2] in ['headquarters', 'city-center', 'regional']);
+        && (interests.size() < 1 || interests[0] in ['building', 'planning', 'community'])
+        && (interests.size() < 2 || interests[1] in ['building', 'planning', 'community'])
+        && (interests.size() < 3 || interests[2] in ['building', 'planning', 'community']);
     }
 
     match /users/{userId} {
