@@ -1,15 +1,20 @@
 {
-  "short_name": "BR Railway",
-  "name": "BR Railway",
+  "id": "/",
+  "short_name": "BR鉄道",
+  "name": "BR鉄道株式会社",
+  "description": "世界一、モフモフな旅をあなたに。",
+  "lang": "ja",
   "display": "standalone",
   "start_url": "/",
-  "background_color": "#ffffff",
-  "theme_color": "#ffffff",
+  "scope": "/",
+  "background_color": "#f7f5ef",
+  "theme_color": "#f7f5ef",
   "icons": [
     {
-      "src": "BR.png",
-      "sizes": "1408x768",
-      "type": "image/png"
+      "src": "icon.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
     }
   ]
 }

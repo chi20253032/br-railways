@@ -1,342 +1,228 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>BR鉄道 株式会社 | 世界一、モフモフな旅をあなたに。</title>
-    
-    <!-- PWA Settings -->
-    <meta name="theme-color" content="#5D4037">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="BR鉄道">
-    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/2592/2592317.png">
-    
-    <!-- Web App Manifest (Data URL to avoid external file issues) -->
-    <link rel="manifest" href='data:application/manifest+json,{"name":"BR鉄道 株式会社","short_name":"BR鉄道","start_url":".","display":"standalone","background_color":"#FDFBF7","theme_color":"#5D4037","icons":[{"src":"https://cdn-icons-png.flaticon.com/512/2592/2592317.png","sizes":"512x512","type":"image/png","purpose":"any maskable"}]}'>
-
-    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        br: {
-                            brown: '#5D4037', // クマのブラウン
-                            dark: '#3E2723',  // 濃いブラウン
-                            blue: '#1976D2',  // 鉄道のブルー
-                            gold: '#FFD700',  // 当選・公式のゴールド
-                            bg: '#FDFBF7',    // 優しいクリーム色の背景
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['"M PLUS Rounded 1c"', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        html { scroll-behavior: smooth; }
-        /* 背景グラデーション */
-        .hero-gradient {
-            background: linear-gradient(135deg, #5D4037 0%, #3E2723 50%, #1976D2 100%);
-        }
-
-        /* AIチャット用スタイル */
-        #chat-window {
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            transform: translateY(30px) scale(0.95);
-            opacity: 0;
-            pointer-events: none;
-        }
-        #chat-window.open {
-            transform: translateY(0) scale(1);
-            opacity: 1;
-            pointer-events: auto;
-        }
-        .cursor-blink::after {
-            content: '|';
-            animation: blink 1s infinite;
-        }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-
-        /* カスタムスクロールバー */
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 6px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background-color: rgba(93, 64, 55, 0.2);
-            border-radius: 10px;
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f5ef">
+  <meta name="description" content="BR鉄道株式会社 — 世界一、モフモフな旅をあなたに。くまモフサーバーの鉄道づくりとクルー募集のご案内。">
+  <title>BR鉄道株式会社 — 世界一、モフモフな旅をあなたに。</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=M+PLUS+Rounded+1c:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--ink:#182a36;--muted:#61727b;--blue:#176b78;--blue2:#dbecef;--cream:#f7f5ef;--white:#fff;--gold:#e9b957;--line:#e6e4dd;--shadow:0 20px 60px #21394212;--radius:26px}
+    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:var(--cream);color:var(--ink);font-family:"DM Sans","M PLUS Rounded 1c",sans-serif;line-height:1.7}body,button,input{font-family:"DM Sans","M PLUS Rounded 1c",sans-serif}a{color:inherit;text-decoration:none}button{color:inherit}button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--gold);outline-offset:3px}.skip-link{position:absolute;left:12px;top:-60px;z-index:100;background:white;padding:10px 16px;border-radius:8px}.skip-link:focus{top:12px}.wrap{width:min(1160px,calc(100% - 48px));margin-inline:auto}.topbar{position:sticky;top:0;z-index:10;background:#f7f5efed;backdrop-filter:blur(16px);border-bottom:1px solid #182a360c}.nav{height:78px;display:flex;align-items:center;justify-content:space-between;gap:28px}.brand{display:flex;align-items:center;gap:11px;font-weight:800;font-size:19px;letter-spacing:.01em}.brand img{width:44px;height:34px;object-fit:cover;object-position:center;border-radius:10px}.navlinks{display:flex;align-items:center;gap:28px;font-size:13px;font-weight:700;color:#455862}.navlinks a:hover{color:var(--blue)}.nav-actions{display:flex;align-items:center;gap:10px}.menu-toggle{display:none}.btn{border:0;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 21px;border-radius:999px;font-size:13px;font-weight:800;transition:transform .18s,background .18s,box-shadow .18s}.btn:hover{transform:translateY(-2px)}.btn-primary{background:var(--blue);color:white;box-shadow:0 8px 22px #176b782b}.btn-primary:hover{background:#105761}.btn-quiet{background:white;border:1px solid var(--line)}.btn-light{background:white;color:var(--ink)}.btn-outline{background:transparent;border:1px solid #ffffff91;color:white}.hero{padding:74px 0 84px;overflow:hidden}.hero-grid{display:grid;grid-template-columns:1.02fr .98fr;align-items:center;gap:50px}.eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--blue);font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}.eyebrow:before{content:"";width:22px;height:2px;background:var(--gold)}h1,h2,h3,p{margin-top:0}h1{font-family:"M PLUS Rounded 1c",sans-serif;font-size:clamp(40px,5vw,66px);line-height:1.22;letter-spacing:-.045em;margin:18px 0 20px;font-weight:800}h1 em{font-style:normal;color:var(--blue)}.hero-copy{max-width:500px;color:var(--muted);font-size:16px;line-height:2}.hero-buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.hero-note{font-size:11px;color:#809099;margin:22px 0 0}.hero-art{min-height:450px;position:relative;border-radius:38px;overflow:hidden;background:linear-gradient(153deg,#e2eff0,#c4dcdf 51%,#98bec2);box-shadow:var(--shadow)}.hero-art:before{content:"";position:absolute;width:380px;height:380px;border-radius:50%;right:-52px;top:-100px;background:#ffffff58}.sun{position:absolute;width:78px;height:78px;border-radius:50%;right:92px;top:59px;background:#f7d99a;box-shadow:0 0 0 18px #fff3}.hills{position:absolute;left:-5%;right:-5%;height:180px;bottom:110px;border-radius:50% 50% 0 0/35% 35% 0 0;background:#729b83;transform:rotate(-5deg)}.hills:after{content:"";position:absolute;inset:32px -15px -40px;background:#4f806e;border-radius:50% 50% 0 0/30% 30% 0 0;transform:rotate(8deg)}.track{height:90px;position:absolute;bottom:52px;left:-6%;width:115%;background:linear-gradient(174deg,transparent 34%,#f5f2e9 35%,#f5f2e9 42%,#526872 43%,#526872 47%,#f5f2e9 48%,#f5f2e9 55%,transparent 56%);transform:rotate(-7deg)}.track:after{content:"";position:absolute;inset:47px 0 0;background:repeating-linear-gradient(90deg,transparent 0 22px,#687d80 23px 26px,transparent 27px 48px);opacity:.8}.train{position:absolute;z-index:2;right:12%;bottom:111px;width:245px;height:105px;border-radius:32px 38px 12px 12px;background:#fffefa;border-bottom:12px solid var(--blue);box-shadow:0 18px 22px #28484a2e;transform:rotate(-7deg)}.train:before{content:"";position:absolute;inset:20px 26px 38px;background:repeating-linear-gradient(90deg,#93c4ca 0 38px,#e5f2ef 39px 48px);border-radius:14px 20px 3px 3px}.train:after{content:"🐻";position:absolute;left:17px;bottom:10px;font-size:27px}.wheel{position:absolute;z-index:3;bottom:101px;right:17%;width:21px;height:21px;border-radius:50%;background:#263d46;box-shadow:166px 0 #263d46}.art-label{position:absolute;z-index:4;left:24px;top:24px;padding:10px 14px;border-radius:14px;background:#fffefaee;font-size:11px;font-weight:800;letter-spacing:.08em}.art-caption{position:absolute;z-index:4;left:24px;bottom:22px;color:white;font-size:12px;font-weight:700;text-shadow:0 2px 8px #142b2f}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border-block:1px solid var(--line)}.stat{padding:22px 18px;text-align:center;background:var(--cream)}.stat strong{display:block;font-size:21px;color:var(--blue)}.stat span{font-size:11px;color:var(--muted);font-weight:700;letter-spacing:.05em}.section{padding:92px 0}.section-heading{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:32px}.section-heading h2{font-family:"M PLUS Rounded 1c",sans-serif;font-size:clamp(28px,3.2vw,42px);line-height:1.35;margin:9px 0 0;letter-spacing:-.035em}.section-heading p{max-width:430px;margin:0;color:var(--muted);font-size:13px}.news-card{display:grid;grid-template-columns:1fr auto;align-items:center;gap:30px;background:white;border:1px solid var(--line);border-radius:var(--radius);padding:30px 34px;box-shadow:var(--shadow)}.news-label{font-size:10px;font-weight:800;letter-spacing:.12em;color:var(--blue)}.news-card h3{font-size:20px;margin:6px 0}.news-card p{font-size:13px;color:var(--muted);margin:0;max-width:720px}.news-date{align-self:start;color:#84939a;font-size:11px;white-space:nowrap}.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.feature{background:white;border:1px solid var(--line);border-radius:var(--radius);padding:26px;min-height:210px}.feature-icon{width:45px;height:45px;display:grid;place-items:center;border-radius:15px;background:var(--blue2);font-size:21px;margin-bottom:19px}.feature h3{font-size:16px;margin:0 0 8px}.feature p{color:var(--muted);font-size:12px;margin:0}.route-panel{background:#173642;color:white;border-radius:34px;padding:42px;position:relative;overflow:hidden}.route-panel:after{content:"";position:absolute;width:290px;height:290px;border:1px solid #ffffff17;border-radius:50%;right:-75px;top:-110px;box-shadow:0 0 0 35px #ffffff08,0 0 0 70px #ffffff06}.route-panel .eyebrow{color:#acd4d5}.route-panel h2{font-family:"M PLUS Rounded 1c",sans-serif;font-size:32px;margin:12px 0}.route-panel p{max-width:590px;color:#d1e0e1;font-size:13px}.route-line{display:flex;align-items:center;gap:0;margin:35px 0 22px;position:relative;z-index:1}.station{display:flex;align-items:center;gap:11px;white-space:nowrap;font-size:12px;font-weight:800}.dot{width:16px;height:16px;background:#f5ce79;border:4px solid #173642;box-shadow:0 0 0 1px #f5ce79;border-radius:50%}.rail{height:2px;flex:1;background:#83bdc3;min-width:22px}.planning-tag{display:inline-block;border:1px solid #ffffff45;color:#e4efed;border-radius:999px;padding:7px 12px;font-size:10px;font-weight:800;letter-spacing:.04em}.crew{display:grid;grid-template-columns:.85fr 1.15fr;gap:38px;align-items:center}.crew-copy h2{font-family:"M PLUS Rounded 1c",sans-serif;font-size:38px;line-height:1.35;margin:12px 0}.crew-copy p{font-size:13px;color:var(--muted)}.crew-card{background:white;border:1px solid var(--line);border-radius:var(--radius);padding:29px;box-shadow:var(--shadow)}.crew-list{display:grid;gap:15px;margin:0 0 24px;padding:0;list-style:none}.crew-list li{display:flex;gap:12px;font-size:13px;color:#43565e}.check{flex:none;width:22px;height:22px;display:grid;place-items:center;border-radius:50%;background:#e2f0e9;color:#28744b;font-size:12px;font-weight:800}.site-footer{background:#173642;color:#e3eeee;padding:42px 0}.footer-row{display:flex;justify-content:space-between;align-items:center;gap:24px}.footer-row p{font-size:11px;color:#afc6c7;margin:3px 0}.footer-links{display:flex;gap:20px;font-size:11px}.footer-brand{display:flex;align-items:center;gap:10px;font-weight:800}.footer-brand img{width:38px;height:28px;object-fit:cover;border-radius:7px}
+    .modal-backdrop{position:fixed;inset:0;z-index:30;background:#102830a8;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(5px)}.modal-backdrop.open{display:flex}.modal{width:min(440px,100%);background:white;border-radius:28px;padding:32px;box-shadow:0 30px 100px #06171c55;position:relative;max-height:calc(100vh - 36px);overflow:auto}.modal-close{position:absolute;right:17px;top:15px;border:0;background:#f2f4f2;border-radius:50%;width:35px;height:35px;font-size:19px;cursor:pointer}.modal h2{font-family:"M PLUS Rounded 1c",sans-serif;font-size:26px;margin:7px 0}.modal-intro{color:var(--muted);font-size:12px;margin-bottom:22px}.auth-tabs{display:grid;grid-template-columns:1fr 1fr;background:#f1f3f1;padding:4px;border-radius:12px;margin:18px 0}.auth-tab{border:0;background:transparent;border-radius:9px;padding:9px;font-size:12px;font-weight:800;cursor:pointer}.auth-tab.active{background:white;box-shadow:0 2px 8px #152a3312}.field{display:grid;gap:6px;margin:14px 0}.field label{font-size:11px;font-weight:800}.field input{width:100%;border:1px solid var(--line);border-radius:12px;padding:12px 13px;font-size:13px;color:var(--ink);background:white}.field-hint{font-size:10px;color:var(--muted)}.auth-submit{width:100%;margin-top:8px}.auth-message{min-height:20px;margin:13px 0 0;font-size:11px;color:var(--blue)}.auth-message.error{color:#b23c37}.auth-message.success{color:#28744b}.forgot{border:0;background:none;text-decoration:underline;color:var(--muted);font-size:11px;cursor:pointer;padding:8px 0}.account-view{display:none}.account-view.visible{display:block}.account-avatar{width:56px;height:56px;display:grid;place-items:center;border-radius:19px;background:var(--blue2);font-size:27px;margin:20px 0 10px}.account-email{font-size:13px;color:var(--muted);word-break:break-word}.account-badge{display:inline-block;background:#e3f2e9;color:#28744b;border-radius:999px;padding:5px 10px;font-size:10px;font-weight:800;margin:8px 0 17px}.hidden{display:none!important}.mobile-menu{display:none}
+    @media(max-width:850px){.navlinks{gap:15px}.hero-grid{gap:28px}.hero-art{min-height:390px}.crew{gap:22px}.section{padding:72px 0}}
+    @media(max-width:680px){.wrap{width:min(100% - 34px,520px)}.nav{height:68px}.brand{font-size:16px}.brand img{width:39px;height:30px}.navlinks{display:none}.nav-actions .btn{padding:10px 13px;font-size:11px}.menu-toggle{display:grid;place-items:center;border:1px solid var(--line);background:white;width:39px;height:39px;border-radius:50%;font-size:17px}.mobile-menu{position:absolute;left:0;right:0;top:68px;background:var(--cream);padding:12px 20px 20px;border-bottom:1px solid var(--line);box-shadow:var(--shadow)}.mobile-menu.open{display:grid;gap:3px}.mobile-menu a{padding:12px 6px;font-size:13px;font-weight:700}.hero{padding:45px 0 55px}.hero-grid{grid-template-columns:1fr;gap:33px}h1{font-size:43px;margin-top:14px}.hero-copy{font-size:14px}.hero-art{min-height:320px;border-radius:27px}.train{transform:scale(.8) rotate(-7deg);transform-origin:right bottom;right:8%;bottom:96px}.hills{bottom:90px}.track{bottom:38px}.wheel{bottom:86px;right:14%}.hero-note{font-size:10px}.stats{grid-template-columns:1fr}.stat{padding:14px}.stat strong{font-size:18px}.section{padding:64px 0}.section-heading{display:block}.section-heading p{margin-top:13px}.news-card{grid-template-columns:1fr;padding:24px;gap:13px}.news-date{grid-row:1}.feature-grid{grid-template-columns:1fr}.feature{min-height:0}.route-panel{padding:28px 23px;border-radius:25px}.route-panel h2{font-size:26px}.route-line{margin:28px 0 19px}.station{font-size:10px;gap:6px}.dot{width:13px;height:13px}.crew{grid-template-columns:1fr}.crew-copy h2{font-size:32px}.crew-card{padding:22px}.footer-row{align-items:flex-start;flex-direction:column}.footer-links{flex-wrap:wrap}.modal{padding:28px 23px}.hero-buttons .btn{flex:1}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+  </style>
 </head>
-<body class="bg-br-bg text-gray-700 font-sans antialiased">
-
-    <nav class="bg-white/95 backdrop-blur-sm fixed w-full z-50 shadow-sm border-b border-gray-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20">
-                <div class="flex items-center gap-3">
-                    <svg class="w-10 h-10" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="20" cy="25" r="15" fill="#5D4037"/>
-                        <circle cx="80" cy="25" r="15" fill="#5D4037"/>
-                        <circle cx="50" cy="55" r="45" fill="#5D4037"/>
-                        <path d="M5 55 H95" stroke="#1976D2" stroke-width="8" stroke-linecap="round"/>
-                        <text x="50" y="75" font-family="Arial, sans-serif" font-weight="bold" font-size="35" fill="white" text-anchor="middle">BR</text>
-                    </svg>
-                    <span class="font-extrabold text-2xl text-br-brown tracking-tight">BR鉄道</span>
-                </div>
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#news" class="font-bold text-gray-600 hover:text-br-blue transition">ニュース</a>
-                    <a href="#about" class="font-bold text-gray-600 hover:text-br-blue transition">BRの理念</a>
-                    <a href="#vision" class="font-bold text-gray-600 hover:text-br-blue transition">未来ビジョン</a>
-                    <a href="#recruit" class="bg-br-brown text-white px-5 py-2 rounded-full font-bold hover:bg-br-blue transition shadow-md transform hover:-translate-y-0.5">
-                        クルー募集
-                    </a>
-                </div>
-            </div>
-        </div>
+<body>
+  <a class="skip-link" href="#main">本文へスキップ</a>
+  <header class="topbar">
+    <nav class="nav wrap" aria-label="メインナビゲーション">
+      <a class="brand" href="#" aria-label="BR鉄道 ホーム"><img src="BR.png" alt=""><span>BR鉄道</span></a>
+      <div class="navlinks"><a href="#news">お知らせ</a><a href="#about">BR鉄道について</a><a href="#route">路線計画</a><a href="#crew">クルー募集</a></div>
+      <div class="nav-actions"><button class="btn btn-primary" data-open-account>マイページ <span aria-hidden="true">↗</span></button><button class="menu-toggle" id="menu-toggle" aria-label="メニューを開く" aria-expanded="false">☰</button></div>
+      <div class="mobile-menu" id="mobile-menu"><a href="#news">お知らせ</a><a href="#about">BR鉄道について</a><a href="#route">路線計画</a><a href="#crew">クルー募集</a></div>
     </nav>
-
-    <div class="hero-gradient h-screen flex items-center justify-center text-center px-4 relative overflow-hidden">
-        <svg class="absolute opacity-10 w-[800px] h-[800px] -right-20 -bottom-20 pointer-events-none" viewBox="0 0 100 100" fill="#ffffff">
-            <circle cx="50" cy="50" r="50" />
-        </svg>
-
-        <div class="max-w-4xl mx-auto text-white relative z-10">
-            <div class="inline-flex items-center bg-white/10 backdrop-blur-md border border-white/20 px-4 py-1.5 rounded-full text-sm font-bold mb-8 tracking-wide shadow-lg">
-                <span class="w-2 h-2 bg-br-gold rounded-full mr-2 animate-pulse"></span>
-                くまモフ公式高層ビル 28階 入居決定
-            </div>
-            <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight drop-shadow-xl">
-                世界一、<br class="md:hidden">モフモフな旅を<br>あなたに。
-            </h1>
-            <p class="text-xl md:text-2xl mb-12 font-medium text-gray-100 drop-shadow-md opacity-90">
-                28階から、サーバーの未来を繋ぐ。<br>
-                安心と信頼のインフラ、いよいよ始動。
-            </p>
-            <div class="flex flex-col md:flex-row justify-center gap-5">
-                <a href="#recruit" class="bg-white text-br-brown px-8 py-4 rounded-full font-bold text-lg hover:bg-br-gold hover:text-br-brown transition shadow-xl transform hover:scale-105">
-                    クルー(社員)に応募する
-                </a>
-                <a href="#vision" class="bg-transparent border-2 border-white/50 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/10 transition">
-                    ビジョンを見る
-                </a>
-            </div>
+  </header>
+  <main id="main">
+    <section class="hero">
+      <div class="hero-grid wrap">
+        <div>
+          <span class="eyebrow">BEAR RAILWAYS · KUMAMOFU SERVER</span>
+          <h1>世界一、<br><em>モフモフな旅</em>を<br>あなたに。</h1>
+          <p class="hero-copy">くまモフサーバーの景色と人を、線路でつなぐ。BR鉄道は、安心であたたかな移動体験をみんなと一緒につくる鉄道会社です。</p>
+          <div class="hero-buttons"><a class="btn btn-primary" href="#route">路線計画を見る <span aria-hidden="true">→</span></a><a class="btn btn-quiet" href="#crew">クルーに参加する</a></div>
+          <p class="hero-note">※ BR鉄道はゲームサーバー内での鉄道プロジェクトです。</p>
         </div>
+        <div class="hero-art" role="img" aria-label="緑の丘を走る、くまのマークが付いた青と白の列車">
+          <span class="art-label">A JOURNEY WITH A LITTLE WARMTH</span><span class="sun"></span><span class="hills"></span><span class="track"></span><span class="train"></span><span class="wheel"></span><span class="art-caption">KUMAMOFU LINE · PLANNING</span>
+        </div>
+      </div>
+    </section>
+    <div class="stats wrap" aria-label="BR鉄道の概要">
+      <div class="stat"><strong>28F</strong><span>公式ビル 本社フロア</span></div>
+      <div class="stat"><strong>つながる</strong><span>地域と人を結ぶ鉄道づくり</span></div>
+      <div class="stat"><strong>CREW WANTED</strong><span>初期クルー募集中</span></div>
     </div>
-
-    <section id="news" class="py-24 -mt-10 relative z-20">
-        <div class="max-w-5xl mx-auto px-4">
-            <div class="bg-white rounded-3xl shadow-2xl p-8 md:p-12 border border-gray-100 flex flex-col md:flex-row items-center gap-10">
-                <div class="md:w-1/3 flex flex-col items-center text-center">
-                    <div class="w-24 h-24 bg-br-gold/20 rounded-full flex items-center justify-center mb-4">
-                        <span class="text-5xl">🏢</span>
-                    </div>
-                    <h2 class="text-2xl font-bold text-br-brown">公式拠点決定</h2>
-                    <p class="text-sm text-gray-500 font-bold mt-1">THE OFFICIAL 28TH FLOOR</p>
-                </div>
-                <div class="md:w-2/3 border-l-0 md:border-l-4 border-br-gold md:pl-10">
-                    <h3 class="text-3xl font-bold text-gray-800 mb-4">選ばれし「28階」へ。</h3>
-                    <p class="text-lg leading-relaxed text-gray-600 mb-6">
-                        114件の応募から選ばれた23社の一つとして、BR鉄道は「くまモフ公式高層ビル28階」に本社を構えます。<br>
-                        3階エントランスから直結する地下鉄アクセスなど、ここを起点にサーバー全域をカバーする次世代の交通網を構築します。
-                    </p>
-                    <div class="inline-block bg-br-blue/10 text-br-blue px-4 py-2 rounded-lg font-bold text-sm">
-                        INFO: 本社フロアには多目的協議スペースも完備
-                    </div>
-                </div>
-            </div>
-        </div>
+    <section class="section" id="news">
+      <div class="wrap">
+        <div class="section-heading"><div><span class="eyebrow">LATEST NEWS</span><h2>BR鉄道からのお知らせ</h2></div><p>プロジェクトの最新情報は、公式Discordでもご案内しています。</p></div>
+        <article class="news-card"><div><span class="news-label">HEADQUARTERS</span><h3>公式高層ビル28階に本社を開設</h3><p>114件の応募から選ばれた23社の一つとして、BR鉄道の拠点が決まりました。ここからサーバーの地域をつなぐ鉄道網の計画を進めます。</p></div><span class="news-date">BR RAILWAYS</span></article>
+      </div>
     </section>
-
-    <section id="about" class="py-20 bg-br-bg">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-16">
-                <span class="text-br-blue font-bold tracking-widest uppercase">About Us</span>
-                <h2 class="text-4xl font-extrabold text-br-brown mt-2">愛される「ベアブランド」</h2>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-br-brown">
-                    <div class="text-4xl mb-6">🐻</div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-800">親しみやすさと信頼</h3>
-                    <p class="text-gray-600">「くまモフ」の温かいイメージを鉄道に。移動そのものが癒やしになる、そんな体験を提供します。</p>
-                </div>
-                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-br-blue">
-                    <div class="text-4xl mb-6">🛡️</div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-800">公式ビルの安心感</h3>
-                    <p class="text-gray-600">公式ビル28階に拠点を置く責任ある企業として、安全で確実なインフラ整備をお約束します。</p>
-                </div>
-                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-br-gold">
-                    <div class="text-4xl mb-6">🤝</div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-800">競争から「共創」へ</h3>
-                    <p class="text-gray-600">他社を圧倒するのではなく、共にサーバーを盛り上げるパートナーとして。平和的なインフラ開発を目指します。</p>
-                </div>
-            </div>
+    <section class="section" id="about" style="background:#eeece5">
+      <div class="wrap">
+        <div class="section-heading"><div><span class="eyebrow">ABOUT BR</span><h2>移動の時間まで、<br>好きになる鉄道へ。</h2></div><p>速さだけではなく、乗る人の安心や、地域の人とのつながりを大切にします。</p></div>
+        <div class="feature-grid">
+          <article class="feature"><div class="feature-icon">🐻</div><h3>ほっとする乗車体験</h3><p>くまモフらしい親しみやすさと、わかりやすい案内で、初めての方にもやさしい鉄道を目指します。</p></article>
+          <article class="feature"><div class="feature-icon">🛡️</div><h3>安全を一番に</h3><p>計画から建設、運行まで、みんなが安心して利用できるインフラを丁寧につくります。</p></article>
+          <article class="feature"><div class="feature-icon">🤝</div><h3>一緒につくる</h3><p>他の鉄道会社や地域の皆さんと協力し、サーバー全体が楽しくなる移動の仕組みを考えます。</p></article>
         </div>
+      </div>
     </section>
-
-    <section id="vision" class="py-24 bg-gray-900 text-white relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-96 h-96 bg-br-blue/20 rounded-full blur-3xl -mr-20 -mt-20"></div>
-        <div class="absolute bottom-0 left-0 w-96 h-96 bg-br-brown/20 rounded-full blur-3xl -ml-20 -mb-20"></div>
-
-        <div class="max-w-5xl mx-auto px-4 text-center relative z-10">
-            <h2 class="text-3xl md:text-5xl font-bold mb-8">未来への約束：シームレスな移動</h2>
-            <p class="text-xl leading-loose mb-12 text-gray-300">
-                BR鉄道は、CR鉄道様（たこやん代表）をはじめとする主要路線との<br>
-                <strong>「相互直通運転」</strong>や<strong>「事業連携」</strong>を積極的に推進していきます。<br>
-                公式ビル3階のエントランスは、すべての地域を繋ぐ未来のハブステーションへと進化します。
-            </p>
-            <div class="inline-block border border-gray-700 bg-gray-800/50 px-8 py-4 rounded-xl backdrop-blur-sm">
-                <span class="block text-sm text-gray-400 mb-1">HEADQUARTERS</span>
-                <span class="font-bold text-lg">28階 本社機能：技術提携や共同プロジェクトのためのオープンスペース完備</span>
-            </div>
-        </div>
+    <section class="section" id="route">
+      <div class="wrap"><div class="route-panel"><span class="eyebrow">NETWORK VISION</span><h2>街から街へ、つながる未来。</h2><p>公式ビルのエントランスを起点に、地域をつなぐ路線を計画中です。駅や運行の詳細は、決まり次第こちらでお知らせします。</p><div class="route-line" aria-label="本社前から街の中心を通り、地域へ向かう計画路線"><span class="station"><i class="dot"></i>本社前</span><i class="rail"></i><span class="station"><i class="dot"></i>街の中心</span><i class="rail"></i><span class="station"><i class="dot"></i>各地域</span></div><span class="planning-tag">ROUTE CONCEPT · 計画イメージ</span></div></div>
     </section>
-
-    <section id="recruit" class="py-24 bg-white">
-        <div class="max-w-4xl mx-auto px-4">
-            <div class="bg-gradient-to-br from-br-bg to-white rounded-[3rem] shadow-2xl overflow-hidden border border-br-brown/10">
-                <div class="p-10 md:p-16 text-center">
-                    <h2 class="text-3xl md:text-5xl font-extrabold text-br-brown mb-6">BR初期クルー募集</h2>
-                    <p class="text-lg text-gray-600 mb-12 max-w-2xl mx-auto">
-                        路線の開業に向け、共に歴史を創る仲間を募集します。<br>
-                        公式ビル28階を拠点に、サーバー最高の鉄道網を作りませんか？
-                    </p>
-                    
-                    <div class="grid md:grid-cols-2 gap-8 text-left mb-12">
-                        <div class="flex gap-4">
-                            <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600 shrink-0">✔</div>
-                            <div>
-                                <strong class="block text-gray-800 text-lg mb-1">資材供給システム</strong>
-                                <span class="text-sm text-gray-500">本社ビル直結の供給網を構築予定。建築・整地に集中できる環境です。</span>
-                            </div>
-                        </div>
-                        <div class="flex gap-4">
-                            <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600 shrink-0">✔</div>
-                            <div>
-                                <strong class="block text-gray-800 text-lg mb-1">業界最高水準の待遇</strong>
-                                <span class="text-sm text-gray-500">公式ビル当選企業だからこその安定感。社員の活動を全力でバックアップします。</span>
-                            </div>
-                        </div>
-                        <div class="flex gap-4">
-                            <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600 shrink-0">✔</div>
-                            <div>
-                                <strong class="block text-gray-800 text-lg mb-1">公式ビル直結の現場</strong>
-                                <span class="text-sm text-gray-500">サーバーの中心地である公式ビル周辺が主な活動エリアです。</span>
-                            </div>
-                        </div>
-                        <div class="flex gap-4">
-                            <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600 shrink-0">✔</div>
-                            <div>
-                                <strong class="block text-gray-800 text-lg mb-1">他社との兼業も相談可</strong>
-                                <span class="text-sm text-gray-500">CR様など他社様で活躍中の方の参画も、柔軟に対応します。</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <a href="https://discord.gg/AhrmWwSEN9" target="_blank" rel="noopener noreferrer" class="block w-full md:w-auto md:inline-block bg-br-brown text-white font-bold text-xl px-16 py-5 rounded-full shadow-xl hover:bg-br-dark transition transform hover:-translate-y-1">
-                        公式Discordで応募する
-                    </a>
-                </div>
-            </div>
-        </div>
+    <section class="section" id="crew" style="background:#eeece5">
+      <div class="wrap crew">
+        <div class="crew-copy"><span class="eyebrow">JOIN OUR CREW</span><h2>いっしょに、<br>線路をつくろう。</h2><p>BR鉄道では、初期クルーを募集中です。建築やアイデア出しなど、あなたの得意なことから参加できます。</p><a class="btn btn-primary" href="https://discord.gg/AhrmWwSEN9" target="_blank" rel="noopener noreferrer">公式Discordで応募する <span aria-hidden="true">↗</span></a></div>
+        <div class="crew-card"><ul class="crew-list"><li><span class="check">✓</span><span><strong>建築・駅づくり</strong><br>駅舎や街並みのデザイン、建設に参加。</span></li><li><span class="check">✓</span><span><strong>路線・運行の企画</strong><br>ルートや利用しやすい運行のアイデアを提案。</span></li><li><span class="check">✓</span><span><strong>広報・コミュニティ</strong><br>プロジェクトの魅力をみんなに発信。</span></li><li><span class="check">✓</span><span><strong>兼業も相談できます</strong><br>他社で活動中の方も、まずは気軽にご相談ください。</span></li></ul><span class="planning-tag" style="color:var(--blue);border-color:var(--line)">経験不問 · 参加方法はDiscordでご案内</span></div>
+      </div>
     </section>
+  </main>
+  <footer class="site-footer"><div class="wrap footer-row"><div><div class="footer-brand"><img src="BR.png" alt="">BR鉄道株式会社</div><p>本社：くまモフ公式高層ビル 28階</p><p>© 2026 BR Railways</p></div><div class="footer-links"><a href="#about">会社について</a><a href="#route">路線計画</a><a href="#crew">クルー募集</a><button class="btn-quiet" style="padding:7px 12px;border-radius:99px;font-size:10px" data-open-account>アカウント</button></div></div></footer>
 
-    <!-- Floating AI Chat Interface (Mofu-Core 2.0) -->
-    <div class="fixed bottom-8 right-8 z-[60]">
-        <button id="chat-toggle" class="bg-br-dark text-white w-20 h-20 rounded-[2rem] shadow-2xl flex flex-col items-center justify-center hover:bg-br-blue transition-all duration-500 group overflow-hidden border-4 border-white focus:outline-none focus:ring-4 focus:ring-br-gold">
-            <span class="text-2xl group-hover:scale-125 transition">🐻</span>
-            <span class="text-[8px] font-black mt-1 tracking-widest">AI CORE</span>
-        </button>
+  <div class="modal-backdrop" id="account-modal" role="presentation" aria-hidden="true">
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button class="modal-close" id="modal-close" aria-label="閉じる">×</button>
+      <div id="auth-view">
+        <span class="eyebrow">BR MEMBER</span><h2 id="modal-title">マイページ</h2><p class="modal-intro">BR鉄道のメンバーアカウントを作成・管理できます。</p>
+        <div class="auth-tabs" role="tablist"><button class="auth-tab active" id="tab-login" role="tab" aria-selected="true">ログイン</button><button class="auth-tab" id="tab-signup" role="tab" aria-selected="false">新規登録</button></div>
+        <form id="auth-form">
+          <div class="field hidden" id="name-field"><label for="display-name">お名前</label><input id="display-name" name="name" autocomplete="name" maxlength="40" placeholder="表示名"></div>
+          <div class="field"><label for="email">メールアドレス</label><input id="email" name="email" type="email" autocomplete="email" required maxlength="254" placeholder="you@example.com"></div>
+          <div class="field"><label for="password">パスワード</label><input id="password" name="password" type="password" autocomplete="current-password" required minlength="8" maxlength="128" placeholder="8文字以上"><span class="field-hint" id="password-hint">8文字以上で入力してください。</span></div>
+          <button class="btn btn-primary auth-submit" id="auth-submit" type="submit">ログイン</button>
+          <button class="forgot" id="forgot-password" type="button">パスワードをお忘れですか？</button>
+        </form>
+        <p class="auth-message" id="auth-message" role="status" aria-live="polite"></p>
+      </div>
+      <div class="account-view" id="account-view">
+        <span class="eyebrow">YOUR ACCOUNT</span><div class="account-avatar" aria-hidden="true">🐻</div><h2 id="account-name">ようこそ</h2><p class="account-email" id="account-email"></p><span class="account-badge" id="verified-badge">確認済み</span><p class="modal-intro">アカウントでログインしています。クルーへの応募は公式Discordから受け付けています。</p><button class="btn btn-quiet" id="sign-out" style="width:100%">ログアウト</button><p class="auth-message" id="account-message" role="status" aria-live="polite"></p>
+      </div>
+    </section>
+  </div>
+  <script src="firebase-config.js"></script>
+  <script type="module">
+    const modal = document.querySelector("#account-modal");
+    const authView = document.querySelector("#auth-view");
+    const accountView = document.querySelector("#account-view");
+    const message = document.querySelector("#auth-message");
+    const form = document.querySelector("#auth-form");
+    const submit = document.querySelector("#auth-submit");
+    const signupTab = document.querySelector("#tab-signup");
+    const loginTab = document.querySelector("#tab-login");
+    let mode = "login";
+    let authApi = null;
+    let currentUser = null;
 
-        <div id="chat-window" class="absolute bottom-24 right-0 w-[420px] max-w-[90vw] bg-white rounded-[2.5rem] shadow-[0_40px_120px_rgba(0,0,0,0.3)] flex flex-col border border-gray-100 overflow-hidden text-gray-800">
-            <!-- Header -->
-            <div class="bg-br-dark p-6 text-white relative overflow-hidden shrink-0">
-                <div class="absolute top-0 right-0 opacity-10 translate-x-1/2 -translate-y-1/2">
-                    <svg width="200" height="200" viewBox="0 0 100 100" fill="white"><circle cx="50" cy="50" r="50"/></svg>
-                </div>
-                <div class="flex items-center gap-5 relative z-10">
-                    <div class="w-14 h-14 bg-br-blue rounded-2xl flex items-center justify-center text-2xl shadow-inner border border-white/10">🐻</div>
-                    <div>
-                        <h4 class="font-black text-xl tracking-tight italic">Mofu-Core <span class="text-br-gold font-bold">2.0</span></h4>
-                        <div class="flex items-center gap-2 mt-1">
-                            <span id="core-status-light" class="w-2.5 h-2.5 bg-red-500 rounded-full animate-pulse"></span>
-                            <span id="core-status-text" class="text-[10px] font-black text-white/60 uppercase tracking-widest">OFFLINE NODE</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Chat Messages Area -->
-            <div id="chat-messages" class="flex-1 p-6 overflow-y-auto space-y-4 bg-gray-50 h-[380px] custom-scrollbar scroll-smooth">
-                <div id="initial-prompt-card" class="bg-white p-6 rounded-[2rem] rounded-tl-none shadow-sm text-sm border border-gray-100 mr-8 leading-relaxed">
-                    <p class="font-bold text-br-blue mb-2 italic">SYSTEM UPGRADE DETECTED</p>
-                    <p class="mb-3 text-gray-700">
-                        「Mofu-Core 2.0」へのアップデートが完了しました！<br>
-                        モックテキストから、Gemini AIを搭載した超高性能の「対話型くまちゃんAI」へと生まれ変わりましたクマ。
-                    </p>
-                    <p class="text-xs text-gray-400 mb-4">
-                        28階本社サーバーから高度な回答を出力するため、一度起動シーケンスを走らせる必要があります。
-                    </p>
-                    <button id="boot-engine" class="w-full py-4 bg-br-dark text-white rounded-2xl font-black text-xs tracking-widest hover:bg-br-blue transition-all focus:outline-none focus:ring-2 focus:ring-br-gold shadow-md">
-                        ACTIVATE MOFU-CORE 2.0
-                    </button>
-                </div>
-            </div>
-
-            <!-- Input Area -->
-            <div class="p-4 bg-white border-t border-gray-100 shrink-0">
-                <div class="flex gap-2">
-                    <input type="text" id="chat-input" placeholder="コアを有効にしてください..." class="flex-1 bg-gray-100 border-none rounded-2xl px-5 py-3.5 text-sm focus:ring-2 focus:ring-br-blue outline-none disabled:opacity-50" disabled>
-                    <button id="chat-send" class="bg-br-dark text-white p-4 rounded-2xl hover:bg-br-blue transition-all disabled:opacity-20 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-br-blue" disabled>
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <footer class="bg-gray-900 text-white py-12 border-t border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="flex items-center gap-3">
-                 <svg class="w-8 h-8 opacity-70" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="20" cy="25" r="15" fill="#fff"/>
-                    <circle cx="80" cy="25" r="15" fill="#fff"/>
-                    <circle cx="50" cy="55" r="45" fill="#fff"/>
-                    <path d="M5 55 H95" stroke="#333" stroke-width="8" stroke-linecap="round"/>
-                </svg>
-                <span class="font-bold text-lg text-gray-300">BR鉄道 株式会社</span>
-            </div>
-            <div class="text-gray-500 text-sm text-center md:text-right">
-                <p class="mb-1">本社：くまモフ公式高層ビル 28階</p>
-                <p>&copy; 2026 BR Railways. All Rights Reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Mofu-Core Gemini Engine Script -->
-    <script type="text/javascript">
-        // Gemini API設定 (runtimeにて自動注入されるキーを使用)
-        const apiKey = "";
-        const geminiModel = "gemini-2.5-flash-preview-09-2025";
-        
-        // 開発されているBR鉄道の背景情報や口調を教え込むシステムプロンプト
-        const systemPrompt = `
-You are "Mofu-Core 2.0", the proprietary mascot AI agent for "BR Railways" (BR鉄道株式会社).
-Your personality is a soft, comforting bear-like mascot who resides at the Headquarters on the 28th floor of the official "Kuma-Mofu High-rise Building" (くまモフ公式高層ビル28階).
-
-Key facts about BR Railways:
-1. Headquarters: Located on the 28th floor of the official building (won 1 of 23 slots out of 114 applicants).
-2. Concept: Providing "the world's fluffiest journey" (世界一、モフモフな旅をあなたに). Friendly, warm, reliable infrastructure.
-3. Harmony/Co-creation: Peaceful co-existence, seeking friendly collaborations and active mutual direct service operations (相互直通運転) with CR Railways (CR鉄道, represented by Takoyan).
-4. Recruitment: Looking for starting crew members. We support them fully, offering materials and dynamic environments.
-5. Location features: Easy access with direct subway connection from the 3rd floor entrance.
-
-Conversation guidelines:
-- Speak in a friendly, gentl
+    const setMessage = (text, type = "") => { message.textContent = text; message.className = `auth-message ${type}`; };
+    const setMode = (next) => {
+      mode = next;
+      const signup = mode === "signup";
+      signupTab.classList.toggle("active", signup); loginTab.classList.toggle("active", !signup);
+      signupTab.setAttribute("aria-selected", String(signup)); loginTab.setAttribute("aria-selected", String(!signup));
+      document.querySelector("#name-field").classList.toggle("hidden", !signup);
+      document.querySelector("#password").autocomplete = signup ? "new-password" : "current-password";
+      document.querySelector("#password-hint").textContent = signup ? "8文字以上で設定してください。" : "8文字以上で入力してください。";
+      submit.textContent = signup ? "アカウントを作成" : "ログイン";
+      document.querySelector("#forgot-password").classList.toggle("hidden", signup);
+      setMessage("");
+    };
+    const showAccount = (user) => {
+      currentUser = user;
+      if (user) {
+        authView.classList.add("hidden"); accountView.classList.add("visible");
+        document.querySelector("#account-name").textContent = user.displayName || "ようこそ";
+        document.querySelector("#account-email").textContent = user.email || "";
+        const badge = document.querySelector("#verified-badge");
+        badge.textContent = user.emailVerified ? "メール確認済み" : "メール未確認";
+        badge.style.background = user.emailVerified ? "#e3f2e9" : "#fff2d5";
+        badge.style.color = user.emailVerified ? "#28744b" : "#8b6420";
+      } else {
+        authView.classList.remove("hidden"); accountView.classList.remove("visible");
+      }
+    };
+    const friendlyError = (error) => {
+      const errors = {
+        "auth/email-already-in-use":"このメールアドレスはすでに登録されています。",
+        "auth/invalid-email":"メールアドレスの形式を確認してください。",
+        "auth/weak-password":"パスワードは8文字以上で設定してください。",
+        "auth/invalid-credential":"メールアドレスまたはパスワードを確認してください。",
+        "auth/user-disabled":"このアカウントは現在利用できません。",
+        "auth/too-many-requests":"試行回数が多すぎます。しばらくしてから再度お試しください。",
+        "auth/network-request-failed":"ネットワーク接続を確認して、もう一度お試しください。",
+        "auth/operation-not-allowed":"Firebase Consoleでメール/パスワード認証を有効にしてください。",
+        "auth/weak-password":"パスワードは8文字以上で設定してください。"
+      };
+      return errors[error?.code] || "処理に失敗しました。入力内容を確認して再度お試しください。";
+    };
+    const getAuthApi = async () => {
+      if (authApi) return authApi;
+      const config = window.BR_FIREBASE_CONFIG;
+      if (!config || !config.apiKey || config.apiKey.includes("YOUR_")) throw new Error("アカウント機能を有効にするには、firebase-config.js にFirebase設定を追加してください。");
+      const appSdk = await import("https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js");
+      const authSdk = await import("https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js");
+      const app = appSdk.initializeApp(config);
+      const auth = authSdk.getAuth(app);
+      auth.languageCode = "ja";
+      authApi = {...authSdk, auth};
+      authSdk.onAuthStateChanged(auth, showAccount);
+      return authApi;
+    };
+    const openModal = async () => {
+      modal.classList.add("open"); modal.setAttribute("aria-hidden","false"); document.body.style.overflow="hidden";
+      document.querySelector("#email").focus();
+      setMessage("アカウント機能を確認しています…");
+      try { await getAuthApi(); if (!currentUser) setMessage(""); }
+      catch (error) { setMessage(error.message, "error"); }
+    };
+    const closeModal = () => { modal.classList.remove("open"); modal.setAttribute("aria-hidden","true"); document.body.style.overflow=""; };
+    document.querySelectorAll("[data-open-account]").forEach(button => button.addEventListener("click", openModal));
+    document.querySelector("#modal-close").addEventListener("click", closeModal);
+    modal.addEventListener("click", event => { if (event.target === modal) closeModal(); });
+    document.addEventListener("keydown", event => { if (event.key === "Escape" && modal.classList.contains("open")) closeModal(); });
+    loginTab.addEventListener("click", () => setMode("login"));
+    signupTab.addEventListener("click", () => setMode("signup"));
+    form.addEventListener("submit", async event => {
+      event.preventDefault();
+      submit.disabled = true; submit.textContent = "処理中…"; setMessage("");
+      try {
+        const api = await getAuthApi();
+        const email = document.querySelector("#email").value.trim();
+        const password = document.querySelector("#password").value;
+        if (password.length < 8) throw new Error("パスワードは8文字以上で設定してください。");
+        if (mode === "signup") {
+          const credential = await api.createUserWithEmailAndPassword(api.auth, email, password);
+          const displayName = document.querySelector("#display-name").value.trim();
+          if (displayName) await api.updateProfile(credential.user, {displayName});
+          await api.sendEmailVerification(credential.user);
+          showAccount(credential.user);
+          document.querySelector("#account-message").textContent = "確認メールを送信しました。メールをご確認ください。";
+        } else {
+          const credential = await api.signInWithEmailAndPassword(api.auth, email, password);
+          showAccount(credential.user);
+        }
+      } catch (error) { setMessage(error.message?.startsWith("アカウント機能") || error.message?.startsWith("パスワード") ? error.message : friendlyError(error), "error"); }
+      finally { submit.disabled = false; submit.textContent = mode === "signup" ? "アカウントを作成" : "ログイン"; }
+    });
+    document.querySelector("#forgot-password").addEventListener("click", async () => {
+      const email = document.querySelector("#email").value.trim();
+      if (!email) { setMessage("先にメールアドレスを入力してください。", "error"); document.querySelector("#email").focus(); return; }
+      try { const api = await getAuthApi(); await api.sendPasswordResetEmail(api.auth, email); setMessage("パスワード再設定メールを送信しました。", "success"); }
+      catch (error) { setMessage(error.message?.startsWith("アカウント機能") ? error.message : friendlyError(error), "error"); }
+    });
+    document.querySelector("#sign-out").addEventListener("click", async () => {
+      try { if (authApi) await authApi.signOut(authApi.auth); showAccount(null); setMode("login"); setMessage("ログアウトしました。", "success"); }
+      catch (error) { document.querySelector("#account-message").textContent = friendlyError(error); }
+    });
+    const menuToggle = document.querySelector("#menu-toggle");
+    menuToggle.addEventListener("click", () => {
+      const menu = document.querySelector("#mobile-menu");
+      const open = menu.classList.toggle("open"); menuToggle.setAttribute("aria-expanded", String(open)); menuToggle.textContent = open ? "×" : "☰";
+    });
+    document.querySelectorAll("#mobile-menu a").forEach(link => link.addEventListener("click", () => { document.querySelector("#mobile-menu").classList.remove("open"); menuToggle.setAttribute("aria-expanded","false"); menuToggle.textContent="☰"; }));
+    setMode("login");
+    try { await getAuthApi(); } catch { /* Account setup instructions are shown when the user opens the account dialog. */ }
+    if ("serviceWorker" in navigator && location.protocol !== "file:") {
+      window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js").catch(() => {}));
+    }
+  </script>
+</body>
+</html>
