@@ -1,4 +1,4 @@
-const CACHE_NAME = "br-railways-v3";
+const CACHE_NAME = "br-railways-v4";
 const APP_SHELL = ["./", "./index.html", "./manifest.json", "./BR.png", "./icon.svg", "./firebase-config.js"];
 
 self.addEventListener("install", event => {

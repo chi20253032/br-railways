@@ -18,9 +18,46 @@
     @media(max-width:850px){.navlinks{gap:15px}.hero-grid{gap:28px}.hero-art{min-height:390px}.crew{gap:22px}.section{padding:72px 0}}
     @media(max-width:680px){.wrap{width:min(100% - 34px,520px)}.nav{height:68px}.brand{font-size:16px}.brand img{width:39px;height:30px}.navlinks{display:none}.nav-actions .btn{padding:10px 13px;font-size:11px}.menu-toggle{display:grid;place-items:center;border:1px solid var(--line);background:white;width:39px;height:39px;border-radius:50%;font-size:17px}.mobile-menu{position:absolute;left:0;right:0;top:68px;background:var(--cream);padding:12px 20px 20px;border-bottom:1px solid var(--line);box-shadow:var(--shadow)}.mobile-menu.open{display:grid;gap:3px}.mobile-menu a{padding:12px 6px;font-size:13px;font-weight:700}.hero{padding:45px 0 55px}.hero-grid{grid-template-columns:1fr;gap:33px}h1{font-size:43px;margin-top:14px}.hero-copy{font-size:14px}.hero-art{min-height:320px;border-radius:27px}.train{transform:scale(.8) rotate(-7deg);transform-origin:right bottom;right:8%;bottom:96px}.hills{bottom:90px}.track{bottom:38px}.wheel{bottom:86px;right:14%}.hero-note{font-size:10px}.stats{grid-template-columns:1fr}.stat{padding:14px}.stat strong{font-size:18px}.section{padding:64px 0}.section-heading{display:block}.section-heading p{margin-top:13px}.news-card{grid-template-columns:1fr;padding:24px;gap:13px}.news-date{grid-row:1}.feature-grid{grid-template-columns:1fr}.feature{min-height:0}.route-panel{padding:28px 23px;border-radius:25px}.route-panel h2{font-size:26px}.route-line{margin:28px 0 19px}.station{font-size:10px;gap:6px}.dot{width:13px;height:13px}.crew{grid-template-columns:1fr}.crew-copy h2{font-size:32px}.crew-card{padding:22px}.footer-row{align-items:flex-start;flex-direction:column}.footer-links{flex-wrap:wrap}.modal{padding:28px 23px}.hero-buttons .btn{flex:1}}
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+    /* Gentle motion across the page, with a full reduced-motion fallback. */
+    .scroll-progress{position:fixed;z-index:40;top:0;left:0;width:100%;height:3px;transform:scaleX(0);transform-origin:left;background:var(--gold);pointer-events:none}
+    .hero-content{animation:content-enter .8s both}
+    .hero-art{animation:art-enter .9s .12s both}
+    .sun{animation:sun-breathe 7s ease-in-out infinite}
+    .train{animation:train-glide 7s ease-in-out infinite}
+    .hills{animation:hills-drift 11s ease-in-out infinite alternate}
+    .feature,.news-card,.route-panel,.crew-card,.stat{transition:transform .28s ease,box-shadow .28s ease}
+    .feature:hover,.news-card:hover,.crew-card:hover{transform:translateY(-5px);box-shadow:0 24px 55px #2139421c}
+    .route-panel:hover{box-shadow:0 28px 75px #17364235}
+    .btn:active{transform:translateY(0) scale(.97)}
+    .motion-ready .reveal{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s cubic-bezier(.2,.7,.25,1)}
+    .motion-ready .reveal.is-visible{opacity:1;transform:translateY(0)}
+    .motion-ready .reveal[data-delay="1"]{transition-delay:.1s}.motion-ready .reveal[data-delay="2"]{transition-delay:.2s}.motion-ready .reveal[data-delay="3"]{transition-delay:.3s}
+    .station-saves{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:22px;max-width:720px;position:relative;z-index:1}
+    .station-save{display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid #ffffff35;background:#ffffff0d;color:white;padding:12px 14px;border-radius:15px;text-align:left;cursor:pointer;transition:background .2s,transform .2s}
+    .station-save:hover{background:#ffffff18;transform:translateY(-2px)}.station-save[aria-pressed="true"]{background:#e9b957;color:#173642;border-color:#e9b957}
+    .station-save strong{display:block;font-size:12px}.station-save small{display:block;margin-top:2px;color:inherit;opacity:.72;font-size:9px}
+    .save-mark{font-size:18px;font-weight:800}
+    .account-section{background:#f7f8f5;border:1px solid var(--line);border-radius:18px;padding:17px;margin:18px 0}
+    .account-section h3{font-size:13px;margin:0 0 5px}.account-section p{font-size:10px;color:var(--muted);margin:0 0 12px}
+    .saved-list{display:grid;gap:8px;margin:0;padding:0;list-style:none}
+    .saved-list li{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:12px;font-weight:700}
+    .saved-list button{border:0;background:white;border-radius:99px;padding:6px 10px;color:var(--blue);font-size:10px;font-weight:800;cursor:pointer}
+    .saved-empty{font-size:11px;color:var(--muted);padding:8px 0}
+    .auth-divider{display:flex;align-items:center;gap:12px;color:#829097;font-size:10px;margin:14px 0}
+    .auth-divider:before,.auth-divider:after{content:"";height:1px;background:var(--line);flex:1}
+    .google-button{width:100%;border:1px solid var(--line);background:white;border-radius:999px;padding:12px 16px;display:flex;align-items:center;justify-content:center;gap:10px;font-size:12px;font-weight:800;cursor:pointer;transition:background .2s,transform .2s}
+    .google-button:hover{background:#f8fafb;transform:translateY(-1px)}.google-button:disabled{opacity:.6;cursor:wait}
+    @keyframes content-enter{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes art-enter{from{opacity:0;transform:translateY(18px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+    @keyframes sun-breathe{0%,100%{transform:scale(1);box-shadow:0 0 0 18px #fff3}50%{transform:scale(1.06);box-shadow:0 0 0 24px #fff2}}
+    @keyframes train-glide{0%,100%{translate:0 0}50%{translate:9px -3px}}
+    @keyframes hills-drift{from{translate:-4px 0}to{translate:5px 0}}
+    @media(max-width:680px){.station-saves{grid-template-columns:1fr}.station-save{padding:10px 13px}.motion-ready .reveal{transform:translateY(14px)}}
+    @media(prefers-reduced-motion:reduce){.hero-content,.hero-art,.sun,.train,.hills{animation:none!important}.motion-ready .reveal{opacity:1!important;transform:none!important}.feature,.news-card,.route-panel,.crew-card,.stat{transition:none!important}}
   </style>
 </head>
 <body>
+  <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
   <a class="skip-link" href="#main">本文へスキップ</a>
   <header class="topbar">
     <nav class="nav wrap" aria-label="メインナビゲーション">
@@ -33,7 +70,7 @@
   <main id="main">
     <section class="hero">
       <div class="hero-grid wrap">
-        <div>
+        <div class="hero-content">
           <span class="eyebrow">BEAR RAILWAYS · KUMAMOFU SERVER</span>
           <h1>世界一、<br><em>モフモフな旅</em>を<br>あなたに。</h1>
           <p class="hero-copy">くまモフサーバーの景色と人を、線路でつなぐ。BR鉄道は、安心であたたかな移動体験をみんなと一緒につくる鉄道会社です。</p>
@@ -67,7 +104,7 @@
       </div>
     </section>
     <section class="section" id="route">
-      <div class="wrap"><div class="route-panel"><span class="eyebrow">NETWORK VISION</span><h2>街から街へ、つながる未来。</h2><p>公式ビルのエントランスを起点に、地域をつなぐ路線を計画中です。駅や運行の詳細は、決まり次第こちらでお知らせします。</p><div class="route-line" aria-label="本社前から街の中心を通り、地域へ向かう計画路線"><span class="station"><i class="dot"></i>本社前</span><i class="rail"></i><span class="station"><i class="dot"></i>街の中心</span><i class="rail"></i><span class="station"><i class="dot"></i>各地域</span></div><span class="planning-tag">ROUTE CONCEPT · 計画イメージ</span></div></div>
+      <div class="wrap"><div class="route-panel reveal"><span class="eyebrow">NETWORK VISION</span><h2>街から街へ、つながる未来。</h2><p>公式ビルのエントランスを起点に、地域をつなぐ路線を計画中です。駅や運行の詳細は、決まり次第こちらでお知らせします。</p><div class="route-line" aria-label="本社前から街の中心を通り、地域へ向かう計画路線"><span class="station"><i class="dot"></i>本社前</span><i class="rail"></i><span class="station"><i class="dot"></i>街の中心</span><i class="rail"></i><span class="station"><i class="dot"></i>各地域</span></div><span class="planning-tag">ROUTE CONCEPT · 計画イメージ</span><div class="station-saves" aria-label="気になる駅を保存"><button class="station-save" type="button" data-favorite-station="headquarters" aria-pressed="false"><span><strong>本社前</strong><small>HEADQUARTERS</small></span><span class="save-mark" aria-hidden="true">＋</span></button><button class="station-save" type="button" data-favorite-station="city-center" aria-pressed="false"><span><strong>街の中心</strong><small>CITY CENTER</small></span><span class="save-mark" aria-hidden="true">＋</span></button><button class="station-save" type="button" data-favorite-station="regional" aria-pressed="false"><span><strong>各地域</strong><small>REGIONAL</small></span><span class="save-mark" aria-hidden="true">＋</span></button></div></div></div>
     </section>
     <section class="section" id="crew" style="background:#eeece5">
       <div class="wrap crew">
@@ -91,10 +128,12 @@
           <button class="btn btn-primary auth-submit" id="auth-submit" type="submit">ログイン</button>
           <button class="forgot" id="forgot-password" type="button">パスワードをお忘れですか？</button>
         </form>
+        <div class="auth-divider">または</div>
+        <button class="google-button" id="google-sign-in" type="button"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.76 7.18l7.73 6C44.42 37.93 46.98 31.8 46.98 24.55z"/><path fill="#FBBC05" d="M10.53 28.59A14.4 14.4 0 0 1 9.75 24c0-1.59.27-3.13.75-4.59l-7.98-6.19A23.9 23.9 0 0 0 0 24c0 3.87.93 7.52 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.91-5.8l-7.73-6c-2.14 1.43-4.89 2.28-8.18 2.28-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>Googleでログイン</button>
         <p class="auth-message" id="auth-message" role="status" aria-live="polite"></p>
       </div>
       <div class="account-view" id="account-view">
-        <span class="eyebrow">YOUR ACCOUNT</span><div class="account-avatar" aria-hidden="true">🐻</div><h2 id="account-name">ようこそ</h2><p class="account-email" id="account-email"></p><span class="account-badge" id="verified-badge">確認済み</span><p class="modal-intro">アカウントでログインしています。クルーへの応募は公式Discordから受け付けています。</p><button class="btn btn-quiet" id="sign-out" style="width:100%">ログアウト</button><p class="auth-message" id="account-message" role="status" aria-live="polite"></p>
+        <span class="eyebrow">YOUR ACCOUNT</span><div class="account-avatar" aria-hidden="true">🐻</div><h2 id="account-name">ようこそ</h2><p class="account-email" id="account-email"></p><span class="account-badge" id="verified-badge">確認済み</span><p class="modal-intro">アカウントでログインしています。クルーへの応募は公式Discordから受け付けています。</p><div class="account-section"><h3>気になる駅リスト</h3><p>保存した駅は、次回ログイン時もこのアカウントで見られます。</p><ul class="saved-list" id="account-favorites"><li class="saved-empty">駅を読み込み中…</li></ul></div><button class="btn btn-quiet" id="sign-out" style="width:100%">ログアウト</button><p class="auth-message" id="account-message" role="status" aria-live="polite"></p>
       </div>
     </section>
   </div>
@@ -110,9 +149,96 @@
     const loginTab = document.querySelector("#tab-login");
     let mode = "login";
     let authApi = null;
+    let firebaseApp = null;
+    let firestoreApi = null;
     let currentUser = null;
+    const stationNames = {
+      headquarters: "本社前",
+      "city-center": "街の中心",
+      regional: "各地域"
+    };
+    const savedStations = new Set();
+    const accountMessage = document.querySelector("#account-message");
 
     const setMessage = (text, type = "") => { message.textContent = text; message.className = `auth-message ${type}`; };
+    const setAccountMessage = (text, type = "") => { accountMessage.textContent = text; accountMessage.className = `auth-message ${type}`; };
+    const renderSavedStations = () => {
+      document.querySelectorAll("[data-favorite-station]").forEach(button => {
+        const saved = savedStations.has(button.dataset.favoriteStation);
+        button.setAttribute("aria-pressed", String(saved));
+        button.querySelector(".save-mark").textContent = saved ? "✓" : "＋";
+        button.querySelector("small").textContent = saved ? "保存済み" : button.dataset.favoriteStation.toUpperCase().replaceAll("-", " ");
+      });
+      const list = document.querySelector("#account-favorites");
+      list.replaceChildren();
+      if (!savedStations.size) {
+        const empty = document.createElement("li");
+        empty.className = "saved-empty";
+        empty.textContent = "まだ保存した駅はありません。路線計画から追加できます。";
+        list.append(empty);
+        return;
+      }
+      for (const id of savedStations) {
+        const item = document.createElement("li");
+        const name = document.createElement("span");
+        const remove = document.createElement("button");
+        name.textContent = stationNames[id];
+        remove.type = "button";
+        remove.textContent = "リストから削除";
+        remove.addEventListener("click", () => toggleStation(id));
+        item.append(name, remove);
+        list.append(item);
+      }
+    };
+    const getFirestoreApi = async () => {
+      if (firestoreApi) return firestoreApi;
+      if (!firebaseApp) await getAuthApi();
+      const sdk = await import("https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js");
+      firestoreApi = {...sdk, db: sdk.getFirestore(firebaseApp)};
+      return firestoreApi;
+    };
+    const loadFavorites = async user => {
+      savedStations.clear();
+      if (!user) {
+        renderSavedStations();
+        setAccountMessage("");
+        return;
+      }
+      renderSavedStations();
+      try {
+        const db = await getFirestoreApi();
+        const snapshot = await db.getDoc(db.doc(db.db, "users", user.uid));
+        const values = snapshot.exists() ? snapshot.data().savedStations : [];
+        if (Array.isArray(values)) values.filter(id => Object.hasOwn(stationNames, id)).forEach(id => savedStations.add(id));
+        renderSavedStations();
+      } catch (error) {
+        setAccountMessage("駅リストを読み込めません。Firestoreの有効化とセキュリティルールを確認してください。", "error");
+      }
+    };
+    const toggleStation = async id => {
+      if (!Object.hasOwn(stationNames, id)) return;
+      if (!currentUser) {
+        await openModal();
+        setMessage("駅をアカウントに保存するには、ログインしてください。");
+        return;
+      }
+      const wasSaved = savedStations.has(id);
+      if (wasSaved) savedStations.delete(id); else savedStations.add(id);
+      renderSavedStations();
+      setAccountMessage("保存しています…");
+      try {
+        const db = await getFirestoreApi();
+        await db.setDoc(db.doc(db.db, "users", currentUser.uid), {
+          savedStations: [...savedStations],
+          updatedAt: db.serverTimestamp()
+        });
+        setAccountMessage(wasSaved ? "駅をリストから削除しました。" : "駅をアカウントに保存しました。", "success");
+      } catch (error) {
+        if (wasSaved) savedStations.add(id); else savedStations.delete(id);
+        renderSavedStations();
+        setAccountMessage("保存できませんでした。Firestoreの有効化とセキュリティルールを確認してください。", "error");
+      }
+    };
     const setMode = (next) => {
       mode = next;
       const signup = mode === "signup";
@@ -149,6 +275,9 @@
         "auth/too-many-requests":"試行回数が多すぎます。しばらくしてから再度お試しください。",
         "auth/network-request-failed":"ネットワーク接続を確認して、もう一度お試しください。",
         "auth/operation-not-allowed":"Firebase Consoleでメール/パスワード認証を有効にしてください。",
+        "auth/unauthorized-domain":"Firebase Authenticationの承認済みドメインを確認してください。",
+        "auth/popup-blocked":"ブラウザーでポップアップを許可して、もう一度お試しください。",
+        "auth/account-exists-with-different-credential":"このメールアドレスは別のログイン方法で登録済みです。最初に登録した方法でログインしてください。",
         "auth/weak-password":"パスワードは8文字以上で設定してください。"
       };
       return errors[error?.code] || "処理に失敗しました。入力内容を確認して再度お試しください。";
@@ -157,29 +286,63 @@
       if (authApi) return authApi;
       const config = window.BR_FIREBASE_CONFIG;
       if (!config || !config.apiKey || config.apiKey.includes("YOUR_")) throw new Error("アカウント機能を有効にするには、firebase-config.js にFirebase設定を追加してください。");
-      const appSdk = await import("https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js");
-      const authSdk = await import("https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js");
+      const appSdk = await import("https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js");
+      const authSdk = await import("https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js");
       const app = appSdk.initializeApp(config);
       const auth = authSdk.getAuth(app);
       auth.languageCode = "ja";
+      firebaseApp = app;
       authApi = {...authSdk, auth};
-      authSdk.onAuthStateChanged(auth, showAccount);
+      authSdk.onAuthStateChanged(auth, user => { showAccount(user); loadFavorites(user); });
       return authApi;
     };
     const openModal = async () => {
       modal.classList.add("open"); modal.setAttribute("aria-hidden","false"); document.body.style.overflow="hidden";
-      document.querySelector("#email").focus();
+      (currentUser ? document.querySelector("#modal-close") : document.querySelector("#email")).focus();
       setMessage("アカウント機能を確認しています…");
       try { await getAuthApi(); if (!currentUser) setMessage(""); }
       catch (error) { setMessage(error.message, "error"); }
     };
     const closeModal = () => { modal.classList.remove("open"); modal.setAttribute("aria-hidden","true"); document.body.style.overflow=""; };
     document.querySelectorAll("[data-open-account]").forEach(button => button.addEventListener("click", openModal));
+    document.querySelectorAll("[data-favorite-station]").forEach(button => button.addEventListener("click", () => toggleStation(button.dataset.favoriteStation)));
     document.querySelector("#modal-close").addEventListener("click", closeModal);
     modal.addEventListener("click", event => { if (event.target === modal) closeModal(); });
     document.addEventListener("keydown", event => { if (event.key === "Escape" && modal.classList.contains("open")) closeModal(); });
     loginTab.addEventListener("click", () => setMode("login"));
     signupTab.addEventListener("click", () => setMode("signup"));
+    document.querySelector("#google-sign-in").addEventListener("click", async event => {
+      const button = event.currentTarget;
+      button.disabled = true;
+      button.textContent = "Googleに接続しています…";
+      setMessage("");
+      try {
+        const api = await getAuthApi();
+        const provider = new api.GoogleAuthProvider();
+        provider.setCustomParameters({prompt: "select_account"});
+        if (window.matchMedia("(max-width: 680px)").matches) {
+          await api.signInWithRedirect(api.auth, provider);
+        } else {
+          const credential = await api.signInWithPopup(api.auth, provider);
+          showAccount(credential.user);
+          await loadFavorites(credential.user);
+        }
+      } catch (error) {
+        const text = error?.code === "auth/operation-not-allowed"
+          ? "Firebase ConsoleでGoogleログインを有効にしてください。"
+          : error?.code === "auth/unauthorized-domain"
+            ? "Firebase Authenticationの承認済みドメインに、このサイトのホスト名を追加してください。"
+          : error?.code === "auth/account-exists-with-different-credential"
+            ? "このメールアドレスは別のログイン方法で登録済みです。最初に登録した方法でログインしてください。"
+          : error?.code === "auth/popup-closed-by-user"
+            ? "Googleログインをキャンセルしました。"
+            : friendlyError(error);
+        setMessage(text, "error");
+      } finally {
+        button.disabled = false;
+        button.innerHTML = '<svg aria-hidden="true" width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.76 7.18l7.73 6C44.42 37.93 46.98 31.8 46.98 24.55z"/><path fill="#FBBC05" d="M10.53 28.59A14.4 14.4 0 0 1 9.75 24c0-1.59.27-3.13.75-4.59l-7.98-6.19A23.9 23.9 0 0 0 0 24c0 3.87.93 7.52 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.91-5.8l-7.73-6c-2.14 1.43-4.89 2.28-8.18 2.28-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>Googleでログイン';
+      }
+    });
     form.addEventListener("submit", async event => {
       event.preventDefault();
       submit.disabled = true; submit.textContent = "処理中…"; setMessage("");
@@ -219,7 +382,32 @@
     });
     document.querySelectorAll("#mobile-menu a").forEach(link => link.addEventListener("click", () => { document.querySelector("#mobile-menu").classList.remove("open"); menuToggle.setAttribute("aria-expanded","false"); menuToggle.textContent="☰"; }));
     setMode("login");
-    try { await getAuthApi(); } catch { /* Account setup instructions are shown when the user opens the account dialog. */ }
+    renderSavedStations();
+    try {
+      const api = await getAuthApi();
+      await api.getRedirectResult(api.auth);
+    } catch { /* Account setup instructions are shown when the user opens the account dialog. */ }
+    const revealTargets = document.querySelectorAll(".section-heading,.news-card,.feature,.stat,.crew-copy,.crew-card");
+    revealTargets.forEach((element, index) => {
+      element.classList.add("reveal");
+      element.dataset.delay = String(index % 4);
+    });
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if ("IntersectionObserver" in window && !reduceMotion) {
+      document.documentElement.classList.add("motion-ready");
+      const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add("is-visible"); observer.unobserve(entry.target); }
+      }), {threshold: 0.12});
+      revealTargets.forEach(element => observer.observe(element));
+    }
+    const progress = document.querySelector("#scroll-progress");
+    const updateProgress = () => {
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      progress.style.transform = `scaleX(${maxScroll > 0 ? window.scrollY / maxScroll : 0})`;
+    };
+    window.addEventListener("scroll", updateProgress, {passive: true});
+    window.addEventListener("resize", updateProgress);
+    updateProgress();
     if ("serviceWorker" in navigator && location.protocol !== "file:") {
       window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js").catch(() => {}));
     }

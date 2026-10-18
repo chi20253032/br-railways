@@ -1,0 +1,25 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isOwner(userId) {
+      return request.auth != null && request.auth.uid == userId;
+    }
+
+    function isValidProfile() {
+      let stations = request.resource.data.savedStations;
+      return request.resource.data.keys().hasOnly(['savedStations', 'updatedAt'])
+        && request.resource.data.keys().hasAll(['savedStations', 'updatedAt'])
+        && stations is list
+        && stations.size() <= 3
+        && request.resource.data.updatedAt == request.time
+        && (stations.size() < 1 || stations[0] in ['headquarters', 'city-center', 'regional'])
+        && (stations.size() < 2 || stations[1] in ['headquarters', 'city-center', 'regional'])
+        && (stations.size() < 3 || stations[2] in ['headquarters', 'city-center', 'regional']);
+    }
+
+    match /users/{userId} {
+      allow read, delete: if isOwner(userId);
+      allow create, update: if isOwner(userId) && isValidProfile();
+    }
+  }
+}
